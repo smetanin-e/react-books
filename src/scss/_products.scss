@@ -1,0 +1,199 @@
+
+.products-page {
+    margin-block-start: 15px;
+    display: flex;
+    gap: 10px;
+    margin-block-end: 50px;
+    &__container {
+        
+    }
+    &__title {
+        padding-block-start: 25px;
+        padding-inline: 25px;
+        font-size: 32px;
+        font-weight: 300;
+    }
+
+    &__categories {
+       flex: 0 0 188px; 
+    }
+
+    &__books {
+        flex-grow: 1;
+    }
+    &__items {
+        position: relative;
+        border: 1px solid #D6D6D6;
+        margin-top: -1px;
+    }
+}
+.categories {
+    border: 1px solid #D6D6D6;
+    
+    &__title {
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 1.25;
+        padding-inline: 20px;
+        padding-block: 10px;
+    }
+
+    &__item {
+        
+    }
+}
+.item-category {
+
+    &__title {
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.88;
+        padding-inline: 20px;
+        color: #525252;
+        cursor: pointer;
+    }
+
+    &__list {
+    }
+
+    &__subcategory {
+        font-size: 15px;
+        line-height: 1.8;
+        color: #555454;
+        padding-inline: 25px;
+        
+        
+        cursor: pointer;
+        
+        a {
+            display: block;
+            border-bottom: 1px solid #d6d6d6;
+            padding-block: 2px;
+        }
+        &:hover {
+            a {
+                border-bottom:1px solid #7BB461;
+            }
+        }
+        &:last-child {
+            a {
+                border-bottom:none;
+            }
+            
+        }
+        
+    }
+}
+
+/*================products==============================*/
+.products {
+    padding: 25px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px 50px;
+    
+    // .products__item
+    &__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 110px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      border-radius: 8px;
+      &:hover {
+        box-shadow: 1px 1px 8px 8px rgba(119, 119, 119, 0.2);
+        transform: translateY(-2px);
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+.item-product {
+    position: relative;
+    //display: flex;
+    // .item-product__sale
+    &__sale {
+      position: absolute;
+      right: -10px;
+      top: -5px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #f05356;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      p {
+        font-size: 19px;
+        font-weight: 700;
+      }
+      span {
+        font-size: 13px;
+      }
+    }
+  
+    // .item-product__image
+    &__image {
+      padding: 5px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 1px 1px 15px -5px rgb(126, 124, 124);
+      margin-bottom: 12px;
+      img {
+        width: 100px;
+        height: 150px;
+        object-fit: cover;
+      }
+    }
+  
+    // .item-product__title
+    &__title {
+      text-align: center;
+      font-size: 14px;
+      color: #595959;
+      margin-bottom: 7px;
+      flex-grow: 1;
+    }
+  
+    // .item-product__price
+    &__price {
+      font-family: 'Helvetica';
+      text-align: center;
+      font-size: 22px;
+      color: #f05356;
+    }
+  }
+  /*================/products==============================*/
+
+
+
+  /*=================pagination=============================*/
+.pagination {
+    display: flex;
+    justify-content: end;
+  
+    // .pagination__list
+    &__list {
+      display: flex;
+      column-gap: 4px;
+      margin: 0 20px;
+      li {
+        font-family: 'Helvetica';
+        color: #646464;
+        font-size: 16px;
+        padding: 5px 7px 3px;
+        cursor: pointer;
+        &:hover {
+          outline: 1px solid #f2f3f3;
+          border-bottom: 4px solid #cdf7a0;
+        }
+      }
+    }
+  }
+  .current-page {
+    border: 1px solid #d8dce0;
+    border-bottom: 4px solid #95bd6b;
+  }
+  /*=================/pagination=============================*/

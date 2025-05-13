@@ -1,0 +1,161 @@
+.header {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    background: #fff;
+    &__body {
+        background: linear-gradient(to top, #ebebeb, #fefefe);
+    }
+
+    &__nav {
+        
+    }
+}
+.body-header {
+    padding-block: 15px;
+
+    &__container {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+    }
+
+    &__logo {
+        width: 90px;
+        height: 50px;
+        position: relative;
+        @media(max-width: 860px){
+            width: 60px;
+            height: 33px;
+        }
+    }
+
+    &__search {
+        padding-inline: 70px;
+        display: flex;
+    }
+
+    &__items {
+        
+    }
+}
+.search-header {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 125px;
+    // .search-header__input
+    &__input {
+      border: 4px solid #79b260;
+      border-radius: 3px;
+      font-size: 14px;
+      padding: 5px 10px;
+      &:focus {
+        border: 4px solid #6b9e55;
+      }
+      &:focus + .search-header__button {
+        background: #6b9e55;
+      }
+    }
+  
+    // .search-header__button
+    &__button {
+      display: block;
+      position: relative;
+      margin-left: -3px;
+      padding-left: 0px;
+      background: linear-gradient(to top, #6b9e55, #85c46a);
+      border-radius: 3px;
+      font-size: 18px;
+      color: #fff;
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translate(0, -50%);
+        fill: #fff;
+      }
+      &:hover {
+        box-shadow: inset 1px 1px 10px #578f57;
+      }
+      &:active {
+        
+      }
+    }
+  }
+
+.items-header {
+    
+    display: flex;
+    gap: 20px;
+    &__item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        cursor: pointer;
+        &:hover {
+            svg {
+                fill: #6b9e55;
+            }
+        }
+        @media(max-width: 860px){
+            span {
+                display: none;
+            }
+        }
+    }
+}
+.cart {
+}
+.wish {
+}
+.account {
+}
+
+.nav-header {
+    border-top: 1px solid #CECECE;
+    border-bottom: 1px solid #CECECE;
+    &__container {
+    }
+
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        overflow: auto;
+        gap: 5px;
+        
+    }
+
+    &__link {
+        
+        a {
+            
+            padding-inline: 18px;
+            padding-block: 10px;
+            font-weight: 300;
+            font-size: 18px;
+        }
+    }
+}
+
+.count {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #fff;
+    right: 0px;
+    top: 8px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #79b260;
+   &_wish {
+    right: 6px;
+   }
+}

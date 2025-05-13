@@ -1,0 +1,111 @@
+@import "_null.scss"; // Обнуление стилей
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    color:#555454;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: 1 1 auto;
+}
+
+[class*="__container"] {
+    max-inline-size: 1054px; //1024 + 15 + 15
+    margin: 0 auto;
+    padding-inline: 15px;
+
+}
+
+  @import "_header";
+
+  @import "_home";
+  @import "_products";
+
+  @import "_item";
+  @import "_cart";
+
+  @import "_footer";
+
+
+.nav-link {
+    /*
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    */
+    color: #5b5b5b;
+    &:hover {
+        background: linear-gradient(to top, #6b9e55, #85c46a);
+        color: #fff;
+      }
+      &:active {
+        box-shadow: inset 1px 1px 10px #578f57;
+      }
+}
+.nav-link-active {
+    background: linear-gradient(to top, #79b260, #92d774);
+    color: #fff;    
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 5px;
+    &_green {
+        border: solid 1px #52a452;
+        background: linear-gradient(to top, #79b260, #92d774);
+        &:hover {
+            background: linear-gradient(to top, #6b9e55, #85c46a);
+        }
+        &:active {
+            box-shadow: inset 1px 1px 10px #578f57;
+        }
+    }
+
+    &_black {
+        border: solid 1px #232323;
+        background: linear-gradient(to top, #242424, #424242);
+        &:hover {
+            background: linear-gradient(to top, #424242, #5e5e5e);
+        }
+        &:active {
+            box-shadow: inset 1px 1px 10px #242424;
+        }
+    }
+}
+.image {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+  svg {
+    fill:#424242;
+  }
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.st1{fill:#FFFFFF;}
+
+  
+
+ 
+ 
