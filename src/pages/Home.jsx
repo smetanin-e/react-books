@@ -2,16 +2,16 @@ import React from 'react';
 
 
 
-import Banner from './components/Banner';
-import Header from './components/Header';
-import Products from './components/Products';
-import Slider from './components/Slider';
-import Tabs from './components/Tabs';
+import Banner from '../components/Banner'
+import Header from '../components/Header';
+import Products from '../components/Products';
+import Slider from '../components/Slider';
+import Tabs from '../components/Tabs';
 
 
 
 
-function App() {
+function Home() {
 
     //создаем состояние для хранения загруженных книг из сервера
     const [items, setItems] = React.useState([{
@@ -189,4 +189,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

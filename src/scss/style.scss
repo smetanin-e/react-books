@@ -1,16 +1,20 @@
 @import "_null.scss"; // Обнуление стилей
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-
+#root {
+    height: 100%;
+    width: 100%;
+}
 body {
     font-family: "Roboto", sans-serif;
     font-size: 14px;
     color:#555454;
+    height: 100%;
 }
 
 .wrapper {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
 }

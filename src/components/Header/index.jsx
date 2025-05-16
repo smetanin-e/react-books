@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo.png';
 import Search from './Search';
 
@@ -6,13 +7,17 @@ function Header() {
         <header className="header">
                 <div className="header__body body-header">
                     <div className="body-header__container">
+                        <Link to={'/'}>
                         <div className="body-header__logo">
                             <img className="image" src={logo} alt="logo" />
                         </div>
+                        </Link>
+                        
                             
                         <Search/>
                             
                         <div className="body-header__items items-header">
+                                <Link to={'/cart'}>
                                 <div className="items-header__item cart">
                                     <span className="count">99</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="25px" height="25px" viewBox="0 0 510 510" style={{enableBackground:"new 0 0 510 510"}} xmlSpace="preserve">
@@ -22,6 +27,9 @@ function Header() {
                                     </svg>
                                     <span>Корзина</span>
                                 </div>
+                                </Link>
+                                
+                                <Link to={'/wish'}>
                                 <div className="items-header__item wish">
                                     <span className="count count_wish">5</span>
                                     <svg width="25px" height="25px">
@@ -29,6 +37,8 @@ function Header() {
                                       </svg>
                                     <span>Изиранное</span>
                                 </div>
+                                </Link>
+                                
                                 <div className="items-header__item account">
                                     <svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" id="Layer_1" style={{enableBackground:"new 0 0 128 128"}} version="1.1" viewBox="0 0 128 128" xmlSpace="preserve">
                                     
