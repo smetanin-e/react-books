@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 function Cart() {
@@ -88,10 +89,7 @@ function Cart() {
             </div>
         </main>
 
-            <footer className="footer">
-                <p>Проект разработал Сметанин Евгений Евгеньевич</p>
-                <p>2025 г.</p>
-            </footer>
+            <Footer />
         </div>
     )
 }

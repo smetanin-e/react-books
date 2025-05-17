@@ -1,16 +1,17 @@
-import { Link } from "react-router-dom"
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import Products from '../components/Products';
 
-function NotFoundPage() {
-    return(
+function Book() {
+    return (
         <div className="wrapper">
             <Header/>
         
             <main className="page">
                 <div className="page__container">
-                   <h1 className="title">Страница не найдена</h1>
+                   
                     <Link to='/'>
                         <button className="btn btn_black">на главную</button>
                     </Link>
@@ -19,7 +20,7 @@ function NotFoundPage() {
 
             <Footer />
         </div>
-        
     )
 }
-export default NotFoundPage
+
+export default Book;

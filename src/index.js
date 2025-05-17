@@ -8,6 +8,8 @@ import Home from './pages/Home'
 import Cart from './pages/Cart';
 import NotFoundPage from './pages/NotFoundPage';
 import Wish from './pages/Wish';
+import Book from './pages/Book';
+import Categories from './pages/Categories';
 
 const router = createBrowserRouter([
     {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
     {
         path: '/wish',
         element: <Wish />
+    },
+    {
+        path: '/book',
+        element: <Book />
+    },
+    {
+        path: '/categories',
+        element: <Categories />
     }
 ]);
 

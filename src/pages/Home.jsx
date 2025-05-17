@@ -7,7 +7,8 @@ import Header from '../components/Header';
 import Products from '../components/Products';
 import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
-
+import Footer from '../components/Footer';
+import Aside from '../components/Aside';
 
 
 
@@ -70,121 +71,16 @@ function Home() {
                 </div>
 
                 <div className="page__products products-page">
-                    <aside className="products-page__categories categories">
-                        <h2 className="categories__title">Категории</h2>
-                        <div className="categories__item item-category">
-                            <h3 className="item-category__title nav-link nav-link-active">ALL</h3>
-                        </div>
-                        <div className="categories__item item-category">
-                            <h3 className="item-category__title nav-link">Fiction & Literature</h3>
-                            <ul className="item-category__list">
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Science Fiction</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Children</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Fantasy</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Mystery</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Horror</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Poetry</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Literature</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Crime</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="categories__item item-category">
-                            <h3 className="item-category__title nav-link">Non - Fiction</h3>
-                            <ul className="item-category__list">
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Science Fiction</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Children</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Fantasy</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Mystery</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Horror</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Poetry</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Literature</a>
-                                </li>
-                                <li className="item-category__subcategory nav-link">
-                                    <a href="#">Crime</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </aside>
+                    <Aside 
+                        items={items}
+                    />
 
-                    <Tabs items={items}/>
-                    {/*
-                        <div className="products-page__books tabs-page">
-                            <ul className="tabs-page__list">
-                                <li className="tabs-page__link --active-tab-nav">Best sellers</li>
-                               
-                                <li className="tabs-page__link">New Arrivals</li>
-                                <li className="tabs-page__link">Used Books</li>
-                                <li className="tabs-page__link">Special Offers</li>
-                                
-                            </ul>
-
-                            <div className="products-page__items content-tab">
-                                <div className="content-tab__item products">
-                                {
-                                    items.map((obj) => (
-                                        <Products 
-                                            id={obj.id}
-                                            title={obj.title}
-                                            image={obj.imageUrl}
-                                            sale={obj.sale}
-                                            price={obj.price}
-                                            onClick={() => alert(obj.id)}
-                                            />
-                                    ))
-                                }
-                                </div>
-                                
-
-                                <div className="pagination">
-                                    <ul className="pagination__list">
-                                      <li className="current-page">1</li>
-                                      <li>2</li>
-                                      <li>3</li>
-                                      <li>4</li>
-                                      <li>5</li>
-                                    </ul>
-                                  </div>
-                            </div>
-                    </div>
-                    */}
-                    
-                    
+                    <Tabs items={items}/>     
                 </div>
             </div>
         </main>
-        <footer className="footer">
-            <p>Проект разработал Сметанин Евгений Евгеньевич</p>
-            <p>2025 г.</p>
-        </footer>
+        
+        <Footer />
    </div>
   );
 }
