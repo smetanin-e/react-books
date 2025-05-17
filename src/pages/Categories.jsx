@@ -19,6 +19,7 @@ function Categories() {
                     <div class="products-page__books ">
                         <div class="products-page__items">
                                 <h1 class="products-page__title">Категория</h1>
+                                
                                 <Products />
 
                                

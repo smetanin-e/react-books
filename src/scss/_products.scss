@@ -59,7 +59,6 @@
 
     &__subcategory {
         font-size: 15px;
-        line-height: 1.8;
         color: #555454;
         padding-inline: 25px;
         
@@ -70,18 +69,20 @@
             display: block;
             border-bottom: 1px solid #d6d6d6;
             padding-block: 2px;
+            line-height: 1.1;
+            padding-block: 8px;
         }
         &:hover {
             a {
                 border-bottom:1px solid #7BB461;
             }
         }
-        &:last-child {
+       /* &:last-child {
             a {
                 border-bottom:none;
             }
             
-        }
+        }*/
         
     }
 }

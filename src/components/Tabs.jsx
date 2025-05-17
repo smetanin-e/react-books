@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Products from './Products'
-function Tabs({items}) {
+function Tabs({items, isLoading}) {
 
 //Список табов
 //const tabLinks = ['Best sellers', 'New Arrivals', 'Used Books', 'Special Offers'];
@@ -26,7 +26,11 @@ console.log(tabItems);
 
 
   return (
+    
+    
+    
     <div className="products-page__books tabs-page">
+        
         <ul className="tabs-page__list">
             {
                 tabLinks.map((tab)=>(
@@ -38,16 +42,7 @@ console.log(tabItems);
                         {tab}
                     </li>
                 ))
-            }
-            {/*
-                <li className="tabs-page__link --active-tab-nav">Best sellers</li>                    
-            <li className="tabs-page__link">New Arrivals</li>
-            <li className="tabs-page__link">Used Books</li>
-            <li className="tabs-page__link">Special Offers</li>
-            */
-            }
-            
-                                
+            }                   
          </ul>
 
          <div className="products-page__items content-tab">
@@ -77,6 +72,7 @@ console.log(tabItems);
             </div>
         </div>
     </div>
+            
   )
 }
 
