@@ -1,33 +1,20 @@
 import React from 'react';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-
 import Aside from '../components/Aside';
 import Products from '../components/Products';
 
 function Categories() {
   return (
-    <div className='wrapper'>
-      <Header />
+    <div class='page__products products-page'>
+      <Aside />
 
-      <main className='page'>
-        <div className='page__container'>
-          <div class='page__products products-page'>
-            <Aside />
+      <div class='products-page__books '>
+        <div class='products-page__items'>
+          <h1 class='products-page__title'>Категория</h1>
 
-            <div class='products-page__books '>
-              <div class='products-page__items'>
-                <h1 class='products-page__title'>Категория</h1>
-
-                <Products />
-              </div>
-            </div>
-          </div>
+          <Products />
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }
