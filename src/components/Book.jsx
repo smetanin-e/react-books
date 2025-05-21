@@ -1,10 +1,6 @@
 import React from 'react';
 
-const Products = (props) => {
-  const onClickImage = () => {
-    alert(`${props.id}`);
-  };
-
+const Book = (props) => {
   return (
     <div className='products__item item-product'>
       {props.sale ? (
@@ -25,4 +21,4 @@ const Products = (props) => {
   );
 };
 
-export default Products;
+export default Book;

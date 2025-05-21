@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Book() {
+function BookPage() {
   return (
     <Link to='/'>
       <button className='btn btn_black'>на главную</button>
@@ -8,4 +8,4 @@ function Book() {
   );
 }
 
-export default Book;
+export default BookPage;

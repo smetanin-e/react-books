@@ -19,8 +19,10 @@ function Aside({ items }) {
     //мы создаем массив подкатегорий и в результирующий массив добавляем
     //текущий ключ со значением массива подкатегорий с исключением повторяющихся элементов
     for (let key in categoryKeys) {
-      const subs = arr.filter((item) => item[cat] === key).map((item) => item[subCat]);
-      result[key] = [...new Set(subs)];
+      const subs = arr
+        .filter((item) => item[cat] === key) //получаем массив объектов у котовых ключ равен "cat"
+        .map((item) => item[subCat]); //получаем массив подкатегорий, которые относятся к категории "cat"
+      result[key] = [...new Set(subs)]; //в результирующий массив добавляем свойство "cat" со значением массив уникальных подкатегорий
     }
 
     return result;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Aside from '../components/Aside';
-import Products from '../components/Products';
+import Book from '../components/Book';
 
 function Categories() {
   return (
@@ -12,7 +12,7 @@ function Categories() {
         <div class='products-page__items'>
           <h1 class='products-page__title'>Категория</h1>
 
-          <Products />
+          <Book />
         </div>
       </div>
     </div>

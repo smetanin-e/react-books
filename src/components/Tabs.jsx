@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Products from './Products';
+import Book from './Book';
 function Tabs({ items, isLoading }) {
   //Список табов
   //const tabLinks = ['Best sellers', 'New Arrivals', 'Used Books', 'Special Offers'];
@@ -36,7 +36,7 @@ function Tabs({ items, isLoading }) {
       <div className='products-page__items content-tab'>
         <div className='content-tab__item products'>
           {tabItems.map((obj) => (
-            <Products
+            <Book
               id={obj.id}
               title={obj.title}
               image={obj.imageUrl}

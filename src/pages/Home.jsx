@@ -1,10 +1,10 @@
 import React from 'react';
-import ContentLoader from 'react-content-loader';
 
 import Banner from '../components/Banner';
 import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
+import Skeleton from '../components/Skeleton';
 
 function Home() {
   //создаем состояние для хранения загруженных книг из сервера
@@ -48,65 +48,36 @@ function Home() {
   //ссылка на массив объектов, содержащий книги
   const url = 'https://815c3fb7d56c4537.mokky.dev/books';
 
+  const [bannerItem, setBannerItem] = React.useState({});
+
   //Оборачиваем запрос данных с сервера в useEffect, чтобы при каждом изменении
   //не было нового рендера
   React.useEffect(() => {
     //вызываем функцию и прердаем ссылку для получения данных с сервера
     getData(url)
-      .then((data) => setItems(data))
+      .then((data) => {
+        setItems(data);
+        setBannerItem(
+          data
+            .filter((obj) => obj.sale)
+            .reduce((prev, cur) => (+cur.sale > +prev.sale ? cur : prev)),
+        );
+      })
       .catch((error) => console.log(error.message));
+
+    //фильтрую все книги, которые имеют скидку, затем нахожу объект с максимальной скидкой
   }, []);
-
-  console.log(items);
-
-  //фильтрую все книги, которые имеют скидку, затем нахожу объект с максимальной скидкой
-  const bannerItem = items
-    .filter((obj) => obj.sale)
-    .reduce((prev, cur) => (+cur.sale > +prev.sale ? cur : prev));
-  console.log(bannerItem);
 
   return (
     <>
       <div className='page__banner baner-page'>
         <Slider />
-        <Banner bestSale={bannerItem && bannerItem} />
+        {bannerItem.id ? <Banner bestSale={bannerItem} /> : <div>загрузка</div>}
       </div>
 
       <div className='page__products products-page'>
         {isLoading ? (
-          <>
-            <ContentLoader
-              speed={2}
-              width={1000}
-              height={1000}
-              viewBox='0 0 1000 1000'
-              backgroundColor='#f3f3f3'
-              foregroundColor='#ecebeb'
-            >
-              <rect x='0' y='0' rx='0' ry='0' width='188' height='600' />
-              <rect x='205' y='0' rx='0' ry='0' width='600' height='42' />
-
-              <rect x='205' y='60' rx='0' ry='0' width='100' height='150' />
-              <rect x='205' y='220' rx='0' ry='0' width='100' height='30' />
-              <rect x='220' y='260' rx='0' ry='0' width='70' height='25' />
-
-              <rect x='355' y='60' rx='0' ry='0' width='100' height='150' />
-              <rect x='355' y='220' rx='0' ry='0' width='100' height='30' />
-              <rect x='370' y='260' rx='0' ry='0' width='70' height='25' />
-
-              <rect x='505' y='60' rx='0' ry='0' width='100' height='150' />
-              <rect x='505' y='220' rx='0' ry='0' width='100' height='30' />
-              <rect x='520' y='260' rx='0' ry='0' width='70' height='25' />
-
-              <rect x='655' y='60' rx='0' ry='0' width='100' height='150' />
-              <rect x='655' y='220' rx='0' ry='0' width='100' height='30' />
-              <rect x='670' y='260' rx='0' ry='0' width='70' height='25' />
-
-              <rect x='805' y='60' rx='0' ry='0' width='100' height='150' />
-              <rect x='805' y='220' rx='0' ry='0' width='100' height='30' />
-              <rect x='820' y='260' rx='0' ry='0' width='70' height='25' />
-            </ContentLoader>
-          </>
+          <Skeleton />
         ) : (
           <>
             <Aside items={items} />
