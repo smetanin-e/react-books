@@ -5,6 +5,7 @@ import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
 import Skeleton from '../components/Skeleton';
+import axios from 'axios';
 
 function Home() {
   //создаем состояние для хранения загруженных книг из сервера
@@ -27,52 +28,21 @@ function Home() {
 
   const [isLoading, setIsLoading] = React.useState(true);
 
-  //Функция для упрощения формирования запросов запросов
-
-  /* const getData = (url) =>
-        new Promise((resolve,reject) =>
-        fetch(url)
-            .then(response => response.json())
-            .then(json => resolve(json))
-            .catch(error => reject(error))
-        )*/
-
-  const getData = async (url) => {
-    setIsLoading(true);
-    const res = await fetch(url);
-    const json = await res.json();
-    setIsLoading(false);
-    return json;
-  };
-
   //ссылка на массив объектов, содержащий книги
   const url = 'https://815c3fb7d56c4537.mokky.dev/books';
-
-  const [bannerItem, setBannerItem] = React.useState({});
 
   //Оборачиваем запрос данных с сервера в useEffect, чтобы при каждом изменении
   //не было нового рендера
   React.useEffect(() => {
-    //вызываем функцию и прердаем ссылку для получения данных с сервера
-    getData(url)
-      .then((data) => {
-        setItems(data);
-        setBannerItem(
-          data
-            .filter((obj) => obj.sale)
-            .reduce((prev, cur) => (+cur.sale > +prev.sale ? cur : prev)),
-        );
-      })
-      .catch((error) => console.log(error.message));
-
-    //фильтрую все книги, которые имеют скидку, затем нахожу объект с максимальной скидкой
+    axios.get(url).then((response) => setItems(response.data));
+    setIsLoading(false);
   }, []);
 
   return (
     <>
       <div className='page__banner baner-page'>
         <Slider />
-        {bannerItem.id ? <Banner bestSale={bannerItem} /> : <div>загрузка</div>}
+        <Banner isLoading={isLoading} />
       </div>
 
       <div className='page__products products-page'>
