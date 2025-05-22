@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import { Home, Wish, BookPage, Categories, NotFoundPage, Cart} from './pages/';
+import { Home, Wish, Item, Categories, NotFoundPage, Cart} from './pages/';
 
 
 
@@ -22,7 +22,7 @@ function App() {
                     <Route path='/' element={<Home />} />
                     <Route path='/cart' element={<Cart />} />
                     <Route path='/wish' element={<Wish />} />
-                    <Route path='/book' element={<BookPage />} />
+                    <Route path='/item' element={<Item />} />
                     <Route path='/categories' element={<Categories />} />
                     <Route path='*' element={<NotFoundPage />} />
                 </Routes>

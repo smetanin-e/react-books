@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
-import Book from './Book';
+import Book from '../Book';
+import TabsPreLoading from './TabsPreLoading';
 function Tabs({ items, isLoading }) {
+  console.log(items);
+
   //Список табов
   //const tabLinks = ['Best sellers', 'New Arrivals', 'Used Books', 'Special Offers'];
 
   /*Из всех обьектов книг фильтруем по наличию свойства tab и 
     создаем массив значений свойства "tab" отсекая повторяющиеся элементы */
   const tabLinks = Array.from(new Set(items.filter((obj) => obj.tab).map((obj) => obj.tab))).sort();
+  console.log(tabLinks);
 
   //создаем состояние, в котором будем хранить активный таб
   const [activeTab, setActiveTab] = React.useState(tabLinks[0]);
-
-  //функция, которая меняет активный таб (вызывается при клике)
-  const changeTab = (item) => {
-    setActiveTab(item);
-  };
+  console.log(activeTab);
 
   const tabItems = items.filter((obj) => obj.tab === activeTab);
   console.log(tabItems);
@@ -26,7 +26,7 @@ function Tabs({ items, isLoading }) {
         {tabLinks.map((tab) => (
           <li
             className={tab === activeTab ? 'tabs-page__link --active-tab-nav' : 'tabs-page__link'}
-            onClick={() => changeTab(tab)}
+            onClick={() => setActiveTab(tab)}
           >
             {tab}
           </li>

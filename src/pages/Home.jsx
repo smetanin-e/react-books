@@ -4,7 +4,6 @@ import Banner from '../components/Banner';
 import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
-import Skeleton from '../components/Skeleton';
 import axios from 'axios';
 
 function Home() {
@@ -48,14 +47,9 @@ function Home() {
       </div>
 
       <div className='page__products products-page'>
-        {isLoading ? (
-          <Skeleton />
-        ) : (
-          <>
-            <Aside items={items} />
-            <Tabs items={items} />
-          </>
-        )}
+        <Aside items={items} isLoading={isLoading} />
+
+        <Tabs items={items} isLoading={isLoading} />
       </div>
     </>
   );

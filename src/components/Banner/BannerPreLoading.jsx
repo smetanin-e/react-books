@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-const BannerPreLoaading = (props) => (
+const BannerPreLoading = (props) => (
   <ContentLoader
     speed={2}
     width={269}
@@ -14,4 +14,4 @@ const BannerPreLoaading = (props) => (
   </ContentLoader>
 );
 
-export default BannerPreLoaading;
+export default BannerPreLoading;

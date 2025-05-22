@@ -1,12 +1,12 @@
 import posterBg from '../../assets/img/baner/poster-bg.png';
 
-import BannerPreLoaading from './BannerPreLoaading';
+import BannerPreLoading from './BannerPreLoading';
 
 function Banner({ isLoading, bestOffer }) {
   return (
     <>
       {isLoading ? (
-        <BannerPreLoaading />
+        <BannerPreLoading />
       ) : (
         <div className='baner-page__banner banner'>
           <div className='banner__bg'>
