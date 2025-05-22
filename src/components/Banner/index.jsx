@@ -1,24 +1,8 @@
-import React from 'react';
-import axios from 'axios';
-
 import posterBg from '../../assets/img/baner/poster-bg.png';
 
 import BannerPreLoaading from './BannerPreLoaading';
 
-function Banner({ isLoading }) {
-  const [bestOffer, setBestOffer] = React.useState({});
-
-  React.useEffect(() => {
-    axios.get('https://815c3fb7d56c4537.mokky.dev/books').then((response) =>
-      setBestOffer(
-        //фильтрую все книги, которые имеют скидку, затем нахожу объект с максимальной скидкой
-        response.data
-          .filter((obj) => obj.sale)
-          .reduce((prev, cur) => (+cur.sale > +prev.sale ? cur : prev)),
-      ),
-    );
-  }, []);
-
+function Banner({ isLoading, bestOffer }) {
   return (
     <>
       {isLoading ? (
