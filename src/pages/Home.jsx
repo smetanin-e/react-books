@@ -33,6 +33,7 @@ function Home() {
       } catch (error) {
         console.log(error.message || 'Произошла ошибка');
       } finally {
+        window.scrollTo(0, 0);
         setIsLoading(false);
       }
     };
