@@ -1,10 +1,11 @@
 import React from 'react';
-
+import axios from 'axios';
 import Banner from '../components/Banner';
 import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
-import axios from 'axios';
+//import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Home() {
   //создаем состояние для хранения загруженных книг из сервера
@@ -46,6 +47,11 @@ function Home() {
         <Slider />
         <Banner isLoading={isLoading} bestOffer={bestOffer} />
       </div>
+      {!isLoading && (
+        <Link to={'/categories'}>
+          <button className='btn btn_green'>Категории</button>
+        </Link>
+      )}
 
       <div className='page__products products-page'>
         <Aside items={items} isLoading={isLoading} />
