@@ -87,7 +87,12 @@ main {
             box-shadow: inset 1px 1px 10px #242424;
         }
     }
+    &_p {
+        padding-inline: 15px;
+        padding-block: 10px;
+    }
 }
+
 .image {
     position: absolute;
     content: '';

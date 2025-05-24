@@ -4,6 +4,9 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+import { store } from './redux/store'
+import { Provider } from 'react-redux'
+
 import { Home, Wish, Item, Categories, NotFoundPage, Cart} from './pages/';
 
 
@@ -13,7 +16,8 @@ function App() {
 
     
   return (
-    <div className="wrapper">
+    <Provider store={store}>
+        <div className="wrapper">
         <Header/>
         
         <main className="page">
@@ -30,6 +34,8 @@ function App() {
         </main>
         <Footer />
    </div>
+    </Provider>
+    
   );
 }
 

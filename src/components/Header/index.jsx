@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo.png';
 import Search from './Search';
-
 function Header() {
   return (
     <header className='header'>
@@ -18,7 +17,7 @@ function Header() {
           <div className='body-header__items items-header'>
             <Link to={'/cart'}>
               <div className='items-header__item cart'>
-                <span className='count'>99</span>
+                <span className='count'>98</span>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   xmlnsXlink='http://www.w3.org/1999/xlink'

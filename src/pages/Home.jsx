@@ -5,6 +5,7 @@ import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
 import axios from 'axios';
+import Counter from '../components/Counter';
 
 function Home() {
   //создаем состояние для хранения загруженных книг из сервера
@@ -45,7 +46,7 @@ function Home() {
         <Slider />
         <Banner isLoading={isLoading} bestOffer={bestOffer} />
       </div>
-
+      <Counter />
       <div className='page__products products-page'>
         <Aside items={items} isLoading={isLoading} />
 
