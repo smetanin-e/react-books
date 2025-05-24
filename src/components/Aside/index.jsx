@@ -1,7 +1,7 @@
 import React from 'react';
 import AsidePreLoading from './AsidePreLoading';
 
-function Aside({ items, isLoading }) {
+function Aside({ items, isLoading, valueCategory, onClickCategory }) {
   //создаем функцию, которая принимает в качестве аргументов массив объектов с книгами,
   //название категории и название подкатегории
   const categoriesFromObject = (arr, cat, subCat) => {
@@ -33,7 +33,7 @@ function Aside({ items, isLoading }) {
 
   const categoryTitles = Object.keys(categories);
 
-  const [activeCategory, setActiveCategory] = React.useState('');
+  //const [activeCategory, setActiveCategory] = React.useState('');
 
   return (
     <aside className='products-page__categories categories'>
@@ -45,9 +45,9 @@ function Aside({ items, isLoading }) {
           {categoryTitles.map((value, index) => (
             <div className='categories__item item-category'>
               <h3
-                onClick={() => setActiveCategory(value)}
+                onClick={() => onClickCategory(value)}
                 className={
-                  activeCategory === value
+                  valueCategory === value
                     ? 'item-category__title nav-link nav-link-active'
                     : 'item-category__title nav-link'
                 }
@@ -59,12 +59,12 @@ function Aside({ items, isLoading }) {
                   categories[value].map((subCategory, index) => (
                     <li
                       className={
-                        activeCategory === subCategory
+                        valueCategory === subCategory
                           ? 'item-category__subcategory nav-link nav-link-active'
                           : 'item-category__subcategory nav-link'
                       }
                     >
-                      <a onClick={() => setActiveCategory(subCategory)}>{subCategory}</a>
+                      <a onClick={() => onClickCategory(subCategory)}>{subCategory}</a>
                     </li>
                   ))}
               </ul>

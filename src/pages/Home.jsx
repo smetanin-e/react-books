@@ -1,11 +1,10 @@
 import React from 'react';
-
+import axios from 'axios';
 import Banner from '../components/Banner';
 import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
 import axios from 'axios';
-import Counter from '../components/Counter';
 
 function Home() {
   //создаем состояние для хранения загруженных книг из сервера
@@ -34,6 +33,7 @@ function Home() {
       } catch (error) {
         console.log(error.message || 'Произошла ошибка');
       } finally {
+        window.scrollTo(0, 0);
         setIsLoading(false);
       }
     };
@@ -46,7 +46,7 @@ function Home() {
         <Slider />
         <Banner isLoading={isLoading} bestOffer={bestOffer} />
       </div>
-      <Counter />
+
       <div className='page__products products-page'>
         <Aside items={items} isLoading={isLoading} />
 
