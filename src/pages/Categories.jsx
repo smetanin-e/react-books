@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Aside from '../components/Aside';
 import Book from '../components/Book';
+import Products from '../components/Products';
 
 function Categories() {
   /* 
@@ -51,18 +52,7 @@ function Categories() {
       <div class='products-page__books '>
         <div class='products-page__items'>
           <h1 class='products-page__title'>{categoryActive}</h1>
-          <div className='products'>
-            {items.map((obj) => (
-              <Book
-                id={obj.id}
-                title={obj.title}
-                image={obj.imageUrl}
-                sale={obj.sale}
-                price={obj.price}
-                onClick={() => alert(obj.id)}
-              />
-            ))}
-          </div>
+          <Products items={items} />
         </div>
       </div>
     </div>

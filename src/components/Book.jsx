@@ -11,7 +11,7 @@ const Book = (props) => {
       ) : null}
 
       <div className='item-product__image' onClick={props.onClick}>
-        <img src={props.image} alt='' />
+        <img src={props.imageUrl} alt='' />
       </div>
       <h2 className='item-product__title'>
         {props.title.length > 20 ? props.title.slice(0, 20) + '...' : props.title}

@@ -1,10 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
-import Book from '../Book';
+import Products from '../Products';
 import TabsPreLoading from './TabsPreLoading';
-function Tabs({ items, isLoading }) {
-  console.log(items);
 
+function Tabs({ items, isLoading }) {
   //Список табов
   //const tabLinks = ['Best sellers', 'New Arrivals', 'Used Books', 'Special Offers'];
 
@@ -17,10 +16,6 @@ function Tabs({ items, isLoading }) {
   const [activeTab, setActiveTab] = React.useState(tabLinks[0]);
 
   const tabItems = items.filter((obj) => obj.tab === activeTab);
-
-  React.useEffect(() => {
-    setActiveTab(tabLinks[0]);
-  }, [isLoading]);
 
   return (
     <>
@@ -42,7 +37,20 @@ function Tabs({ items, isLoading }) {
           </ul>
 
           <div className='products-page__items content-tab'>
-            <div className='content-tab__item products'>
+            <Products items={tabItems} />
+            <div className='pagination'>
+              <ul className='pagination__list'>
+                <li className='current-page'>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* <div className='products-page__items content-tab'>
+            <div className='products'>
               {tabItems.map((obj) => (
                 <Book
                   id={obj.id}
@@ -64,7 +72,7 @@ function Tabs({ items, isLoading }) {
                 <li>5</li>
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
       )}
     </>
