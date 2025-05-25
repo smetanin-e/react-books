@@ -25,11 +25,10 @@ function Aside({ isLoading, setIsLoading }) {
       }
     };
     getData();
-  }, []);
+  }, [setIsLoading]);
 
   const dispatch = useDispatch();
   const activeCategory = useSelector((state) => state.category.curentCategory);
-  const itSubCategory = useSelector((state) => state.category.itSubCategory);
 
   const setCategoryActive = (item) => {
     dispatch(changeCategory(item));
@@ -37,8 +36,6 @@ function Aside({ isLoading, setIsLoading }) {
   const setIsItSubCategory = (bool) => {
     dispatch(isItSubCategory(bool));
   };
-  console.log(activeCategory);
-  console.log(itSubCategory);
 
   //создаем функцию, которая принимает в качестве аргументов массив объектов с книгами,
   //название категории и название подкатегории
@@ -104,14 +101,15 @@ function Aside({ isLoading, setIsLoading }) {
                           : 'item-category__subcategory nav-link'
                       }
                     >
-                      <a
+                      <Link
+                        to={'/categories'}
                         onClick={() => {
                           setCategoryActive(subCategory);
                           setIsItSubCategory(true);
                         }}
                       >
                         {subCategory}
-                      </a>
+                      </Link>
                     </li>
                   ))}
               </ul>

@@ -14,7 +14,8 @@ const categorySlice = createSlice({
         },
         isItSubCategory(state, action) {
             state.itSubCategory = action.payload
-        }
+        },
+        
     }
 })
 

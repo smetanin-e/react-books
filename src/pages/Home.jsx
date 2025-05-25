@@ -23,7 +23,7 @@ function Home() {
       try {
         const response = await axios.get(url).then((response) => response.data);
         setItems(response);
-
+        setIsLoading(false);
         //Ищем книгу с максимальной скидкой и передаем ее в баннер
         setBestOffer(
           response
@@ -34,7 +34,6 @@ function Home() {
         console.log(error.message || 'Произошла ошибка');
       } finally {
         window.scrollTo(0, 0);
-        setIsLoading(false);
       }
     };
     getData();
@@ -49,6 +48,7 @@ function Home() {
       <Counter />
       <div className='page__products products-page'>
         <Aside isLoading={isLoading} setIsLoading={setIsLoading} />
+
         {isLoading ? <div>loading</div> : <Tabs items={items} />}
       </div>
     </>
