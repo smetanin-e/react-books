@@ -12,7 +12,7 @@ function Tabs({ items }) {
   const tabLinks = Array.from(new Set(items.filter((obj) => obj.tab).map((obj) => obj.tab))).sort();
 
   //создаем состояние, в котором будем хранить активный таб
-  const [activeTab, setActiveTab] = React.useState('Бестселлеры');
+  const [activeTab, setActiveTab] = React.useState(tabLinks[0]);
   console.log('activeTab=', activeTab);
 
   const tabItems = items.filter((obj) => obj.tab === activeTab);
