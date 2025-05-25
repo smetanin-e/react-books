@@ -12,18 +12,19 @@ function Tabs({ items }) {
   const tabLinks = Array.from(new Set(items.filter((obj) => obj.tab).map((obj) => obj.tab))).sort();
 
   //создаем состояние, в котором будем хранить активный таб
-  const [activeTab, setActiveTab] = React.useState(tabLinks[0]);
+  const [activeTab, setActiveTab] = React.useState(0);
   console.log('activeTab=', activeTab);
 
-  const tabItems = items.filter((obj) => obj.tab === activeTab);
+  const tabItems = items.filter((obj) => obj.tab === tabLinks[activeTab]);
 
   return (
     <div className='products-page__books tabs-page'>
       <ul className='tabs-page__list'>
-        {tabLinks.map((tab) => (
+        {tabLinks.map((tab, i) => (
           <li
-            className={tab === activeTab ? 'tabs-page__link --active-tab-nav' : 'tabs-page__link'}
-            onClick={() => setActiveTab(tab)}
+            key={tab[i]}
+            className={i === activeTab ? 'tabs-page__link --active-tab-nav' : 'tabs-page__link'}
+            onClick={() => setActiveTab(i)}
           >
             {tab}
           </li>

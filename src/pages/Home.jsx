@@ -5,10 +5,13 @@ import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
 import Counter from '../components/Counter';
+import { useDispatch } from 'react-redux';
+import { changeCategory } from '../redux/slices/categorySlice';
 
 function Home() {
+  const dispatch = useDispatch();
+  dispatch(changeCategory(''));
   //создаем состояние для хранения загруженных книг из сервера
-  const [items, setItems] = React.useState([]);
 
   const [isLoading, setIsLoading] = React.useState(true);
   const [bestOffer, setBestOffer] = React.useState({});
@@ -19,11 +22,12 @@ function Home() {
   //Оборачиваем запрос данных с сервера в useEffect, чтобы при каждом изменении
   //не было нового рендера
   React.useEffect(() => {
+    setIsLoading(true);
     const getData = async () => {
       try {
         const response = await axios.get(url).then((response) => response.data);
         setItems(response);
-        setIsLoading(false);
+
         //Ищем книгу с максимальной скидкой и передаем ее в баннер
         setBestOffer(
           response
@@ -34,11 +38,12 @@ function Home() {
         console.log(error.message || 'Произошла ошибка');
       } finally {
         window.scrollTo(0, 0);
+        setIsLoading(false);
       }
     };
     getData();
   }, []);
-
+  const [items, setItems] = React.useState([]);
   return (
     <>
       <div className='page__banner baner-page'>

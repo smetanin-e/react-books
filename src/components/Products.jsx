@@ -1,9 +1,6 @@
-import React from 'react';
 import Book from './Book';
 
 function Products({ items }) {
-  console.log(items);
-
   return (
     <div className='products'>
       {items.map((obj) => (

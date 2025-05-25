@@ -75,7 +75,7 @@ function Aside({ isLoading, setIsLoading }) {
         <>
           <h2 className='categories__title'>Категории</h2>
           {categoryTitles.map((value, index) => (
-            <div className='categories__item item-category'>
+            <div key={value + index} className='categories__item item-category'>
               <Link
                 to={'/categories'}
                 onClick={() => {
@@ -95,6 +95,7 @@ function Aside({ isLoading, setIsLoading }) {
                 {categories[value].length > 0 &&
                   categories[value].map((subCategory, index) => (
                     <li
+                      key={subCategory + index}
                       className={
                         activeCategory === subCategory
                           ? 'item-category__subcategory nav-link nav-link-active'

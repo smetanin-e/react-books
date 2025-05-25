@@ -38,6 +38,7 @@ function Categories() {
     };
     getData();
   }, [activeCategory, url]);
+  console.log(activeCategory);
 
   return (
     <div class='page__products products-page'>
