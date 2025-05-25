@@ -4,6 +4,8 @@ import Aside from '../components/Aside';
 import Book from '../components/Book';
 import Products from '../components/Products';
 
+import { useSelector } from 'react-redux';
+
 function Categories() {
   /* 
 !Временный код
@@ -12,19 +14,22 @@ function Categories() {
   const [items, setItems] = React.useState([]);
 
   const [isLoading, setIsLoading] = React.useState(true);
-
-  const [categoryActive, setCategoryActive] = React.useState('ВСЕ');
+  const activeCategory = useSelector((state) => state.category.curentCategory);
   //ссылка на массив объектов, содержащий книги
   const url = 'https://815c3fb7d56c4537.mokky.dev/books';
+  const url1 =
+    activeCategory === 'ВСЕ'
+      ? 'https://815c3fb7d56c4537.mokky.dev/books'
+      : activeCategory.category !== activeCategory
+      ? `https://815c3fb7d56c4537.mokky.dev/books?subCategory=${activeCategory}`
+      : `https://815c3fb7d56c4537.mokky.dev/books?category=${activeCategory}`;
 
   //Оборачиваем запрос данных с сервера в useEffect, чтобы при каждом изменении
   //не было нового рендера
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios
-          .get(categoryActive === 'ВСЕ' ? url : `${url}?subCategory=${categoryActive}`)
-          .then((response) => response.data);
+        const response = await axios.get(url1).then((response) => response.data);
         setItems(response);
       } catch (error) {
         console.log(error.message || 'Произошла ошибка');
@@ -34,7 +39,7 @@ function Categories() {
       }
     };
     getData();
-  }, [categoryActive]);
+  }, [activeCategory]);
 
   /* 
 !Временный код
@@ -42,16 +47,11 @@ function Categories() {
 
   return (
     <div class='page__products products-page'>
-      <Aside
-        items={items}
-        isLoading={isLoading}
-        valueCategory={categoryActive}
-        onClickCategory={(cat) => setCategoryActive(cat)}
-      />
+      <Aside isLoading={isLoading} setIsLoading={setIsLoading} />
 
       <div class='products-page__books '>
         <div class='products-page__items'>
-          <h1 class='products-page__title'>{categoryActive}</h1>
+          <h1 class='products-page__title'>{activeCategory}</h1>
           <Products items={items} />
         </div>
       </div>

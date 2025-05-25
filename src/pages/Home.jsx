@@ -48,7 +48,7 @@ function Home() {
       </div>
       <Counter />
       <div className='page__products products-page'>
-        <Aside items={items} isLoading={isLoading} />
+        <Aside isLoading={isLoading} setIsLoading={setIsLoading} />
         {isLoading ? <div>loading</div> : <Tabs items={items} />}
       </div>
     </>

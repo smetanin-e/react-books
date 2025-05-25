@@ -1,10 +1,42 @@
 import React from 'react';
+import axios from 'axios';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { changeCategory } from '../../redux/slices/categorySlice';
+
 import AsidePreLoading from './AsidePreLoading';
 
-function Aside({ items, isLoading, valueCategory, onClickCategory }) {
+function Aside({ isLoading, setIsLoading }) {
+  const [data, setData] = React.useState([]); //состояние для хранения данных их БД
+
+  //При первом рендере получаем все объекты из базы данных для формирования всех категорий и подкатегорий
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios
+          .get('https://815c3fb7d56c4537.mokky.dev/books')
+          .then((response) => response.data);
+        setData(response);
+      } catch (error) {
+        console.log(error.message || 'Произошла ошибка');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getData();
+  }, []);
+
+  const dispatch = useDispatch();
+  const activeCategory = useSelector((state) => state.category.curentCategory);
+  const setCategoryActive = (item) => {
+    dispatch(changeCategory(item));
+  };
+
+  console.log(activeCategory);
+
   //создаем функцию, которая принимает в качестве аргументов массив объектов с книгами,
   //название категории и название подкатегории
-  const categoriesFromObject = (arr, cat, subCat) => {
+  const categoriesFromDataBase = (arr, cat, subCat) => {
     let result = { ВСЕ: [] };
 
     //создаем объект, свойствами которого будут названия категорий. Значения свойств пустой массив
@@ -29,11 +61,8 @@ function Aside({ items, isLoading, valueCategory, onClickCategory }) {
     return result;
   };
 
-  const categories = categoriesFromObject(items, 'category', 'subCategory');
-
+  const categories = categoriesFromDataBase(data, 'category', 'subCategory');
   const categoryTitles = Object.keys(categories);
-
-  //const [activeCategory, setActiveCategory] = React.useState('');
 
   return (
     <aside className='products-page__categories categories'>
@@ -45,9 +74,9 @@ function Aside({ items, isLoading, valueCategory, onClickCategory }) {
           {categoryTitles.map((value, index) => (
             <div className='categories__item item-category'>
               <h3
-                onClick={() => onClickCategory(value)}
+                onClick={() => setCategoryActive(value)}
                 className={
-                  valueCategory === value
+                  activeCategory === value
                     ? 'item-category__title nav-link nav-link-active'
                     : 'item-category__title nav-link'
                 }
@@ -59,12 +88,12 @@ function Aside({ items, isLoading, valueCategory, onClickCategory }) {
                   categories[value].map((subCategory, index) => (
                     <li
                       className={
-                        valueCategory === subCategory
+                        activeCategory === subCategory
                           ? 'item-category__subcategory nav-link nav-link-active'
                           : 'item-category__subcategory nav-link'
                       }
                     >
-                      <a onClick={() => onClickCategory(subCategory)}>{subCategory}</a>
+                      <a onClick={() => setCategoryActive(subCategory)}>{subCategory}</a>
                     </li>
                   ))}
               </ul>
