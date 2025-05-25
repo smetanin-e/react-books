@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import Aside from '../components/Aside';
-import Book from '../components/Book';
 import Products from '../components/Products';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeCategory } from '../redux/slices/categorySlice';
 
 function Categories() {
   /* 
@@ -15,12 +15,14 @@ function Categories() {
 
   const [isLoading, setIsLoading] = React.useState(true);
   const activeCategory = useSelector((state) => state.category.curentCategory);
+  const itSubCategory = useSelector((state) => state.category.itSubCategory);
+
+  const dispatch = useDispatch();
   //ссылка на массив объектов, содержащий книги
-  const url = 'https://815c3fb7d56c4537.mokky.dev/books';
-  const url1 =
+  const url =
     activeCategory === 'ВСЕ'
       ? 'https://815c3fb7d56c4537.mokky.dev/books'
-      : activeCategory.category !== activeCategory
+      : itSubCategory
       ? `https://815c3fb7d56c4537.mokky.dev/books?subCategory=${activeCategory}`
       : `https://815c3fb7d56c4537.mokky.dev/books?category=${activeCategory}`;
 
@@ -29,7 +31,7 @@ function Categories() {
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get(url1).then((response) => response.data);
+        const response = await axios.get(url).then((response) => response.data);
         setItems(response);
       } catch (error) {
         console.log(error.message || 'Произошла ошибка');
@@ -39,11 +41,7 @@ function Categories() {
       }
     };
     getData();
-  }, [activeCategory]);
-
-  /* 
-!Временный код
-*/
+  }, [activeCategory, url]);
 
   return (
     <div class='page__products products-page'>

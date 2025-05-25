@@ -2,9 +2,10 @@ import React from 'react';
 import axios from 'axios';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { changeCategory } from '../../redux/slices/categorySlice';
+import { changeCategory, isItSubCategory } from '../../redux/slices/categorySlice';
 
 import AsidePreLoading from './AsidePreLoading';
+import { Link } from 'react-router-dom';
 
 function Aside({ isLoading, setIsLoading }) {
   const [data, setData] = React.useState([]); //состояние для хранения данных их БД
@@ -28,11 +29,16 @@ function Aside({ isLoading, setIsLoading }) {
 
   const dispatch = useDispatch();
   const activeCategory = useSelector((state) => state.category.curentCategory);
+  const itSubCategory = useSelector((state) => state.category.itSubCategory);
+
   const setCategoryActive = (item) => {
     dispatch(changeCategory(item));
   };
-
+  const setIsItSubCategory = (bool) => {
+    dispatch(isItSubCategory(bool));
+  };
   console.log(activeCategory);
+  console.log(itSubCategory);
 
   //создаем функцию, которая принимает в качестве аргументов массив объектов с книгами,
   //название категории и название подкатегории
@@ -73,8 +79,12 @@ function Aside({ isLoading, setIsLoading }) {
           <h2 className='categories__title'>Категории</h2>
           {categoryTitles.map((value, index) => (
             <div className='categories__item item-category'>
-              <h3
-                onClick={() => setCategoryActive(value)}
+              <Link
+                to={'/categories'}
+                onClick={() => {
+                  setCategoryActive(value);
+                  setIsItSubCategory(false);
+                }}
                 className={
                   activeCategory === value
                     ? 'item-category__title nav-link nav-link-active'
@@ -82,7 +92,8 @@ function Aside({ isLoading, setIsLoading }) {
                 }
               >
                 {value}
-              </h3>
+              </Link>
+
               <ul className='item-category__list'>
                 {categories[value].length > 0 &&
                   categories[value].map((subCategory, index) => (
@@ -93,7 +104,14 @@ function Aside({ isLoading, setIsLoading }) {
                           : 'item-category__subcategory nav-link'
                       }
                     >
-                      <a onClick={() => setCategoryActive(subCategory)}>{subCategory}</a>
+                      <a
+                        onClick={() => {
+                          setCategoryActive(subCategory);
+                          setIsItSubCategory(true);
+                        }}
+                      >
+                        {subCategory}
+                      </a>
                     </li>
                   ))}
               </ul>

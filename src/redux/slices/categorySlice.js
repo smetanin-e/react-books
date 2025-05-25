@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    curentCategory: ''
+    curentCategory: '',
+    itSubCategory: false
 }
 
 const categorySlice = createSlice({
@@ -10,9 +11,12 @@ const categorySlice = createSlice({
     reducers: {
         changeCategory(state, action) {
             state.curentCategory = action.payload
+        },
+        isItSubCategory(state, action) {
+            state.itSubCategory = action.payload
         }
     }
 })
 
-export const {changeCategory} = categorySlice.actions
+export const {changeCategory, isItSubCategory} = categorySlice.actions
 export default categorySlice.reducer
