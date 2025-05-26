@@ -6,8 +6,11 @@ import { changeCategory, isItSubCategory } from '../../redux/slices/categorySlic
 
 import AsidePreLoading from './AsidePreLoading';
 import { Link } from 'react-router-dom';
+import { MenuContext } from '../../App';
 
 function Aside({ isLoading, setIsLoading }) {
+  const { menu, setMenu } = React.useContext(MenuContext);
+
   const [data, setData] = React.useState([]); //состояние для хранения данных их БД
 
   //При первом рендере получаем все объекты из базы данных для формирования всех категорий и подкатегорий
@@ -18,6 +21,14 @@ function Aside({ isLoading, setIsLoading }) {
           .get('https://815c3fb7d56c4537.mokky.dev/books')
           .then((response) => response.data);
         setData(response);
+
+        //создаем ссылки для меню, которые передадим в header через контекст.
+
+        setMenu(
+          [...new Set(response.map((obj) => obj.subCategory))]
+            .filter((item) => !item.includes(' '))
+            .slice(0, 7),
+        );
       } catch (error) {
         console.log(error.message || 'Произошла ошибка');
       } finally {
@@ -25,7 +36,7 @@ function Aside({ isLoading, setIsLoading }) {
       }
     };
     getData();
-  }, [setIsLoading]);
+  }, [setIsLoading, setMenu]);
 
   const dispatch = useDispatch();
   const activeCategory = useSelector((state) => state.category.curentCategory);

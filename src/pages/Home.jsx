@@ -10,10 +10,16 @@ import { changeCategory } from '../redux/slices/categorySlice';
 
 function Home() {
   const dispatch = useDispatch();
+
+  //При переходе на главную страницу очищаем активную категорию
   dispatch(changeCategory(''));
-  //создаем состояние для хранения загруженных книг из сервера
 
   const [isLoading, setIsLoading] = React.useState(true);
+
+  //создаем состояние для хранения загруженных книг из БД
+  const [items, setItems] = React.useState([]);
+
+  //создаем состояние для хранения книги для баннера
   const [bestOffer, setBestOffer] = React.useState({});
 
   //ссылка на массив объектов, содержащий книги
@@ -22,12 +28,11 @@ function Home() {
   //Оборачиваем запрос данных с сервера в useEffect, чтобы при каждом изменении
   //не было нового рендера
   React.useEffect(() => {
-    setIsLoading(true);
     const getData = async () => {
       try {
         const response = await axios.get(url).then((response) => response.data);
         setItems(response);
-
+        setIsLoading(false);
         //Ищем книгу с максимальной скидкой и передаем ее в баннер
         setBestOffer(
           response
@@ -38,12 +43,11 @@ function Home() {
         console.log(error.message || 'Произошла ошибка');
       } finally {
         window.scrollTo(0, 0);
-        setIsLoading(false);
       }
     };
     getData();
   }, []);
-  const [items, setItems] = React.useState([]);
+
   return (
     <>
       <div className='page__banner baner-page'>

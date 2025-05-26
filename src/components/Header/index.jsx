@@ -1,7 +1,25 @@
-import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo.png';
+
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { changeCategory, isItSubCategory } from '../../redux/slices/categorySlice';
+import { MenuContext } from '../../App';
+
 import Search from './Search';
+
 function Header() {
+  const dispatch = useDispatch();
+  const { menu } = React.useContext(MenuContext);
+
+  const setCategoryActive = (item) => {
+    dispatch(changeCategory(item));
+  };
+  const setIsItSubCategory = (bool) => {
+    dispatch(isItSubCategory(bool));
+  };
+
   return (
     <header className='header'>
       <div className='header__body body-header'>
@@ -76,33 +94,19 @@ function Header() {
       <nav className='header__nav nav-header'>
         <div className='nav-header__container'>
           <ul className='nav-header__list'>
-            <li className='nav-header__link nav-link nav-link-active'>
-              <a href='#'>Computers</a>
-            </li>
-            <li className='nav-header__link nav-link'>
-              <a href='#'>Cooking</a>
-            </li>
-            <li className='nav-header__link nav-link'>
-              <a href='#'>Education</a>
-            </li>
-            <li className='nav-header__link nav-link'>
-              <a href='#'>Fiction</a>
-            </li>
-            <li className='nav-header__link nav-link'>
-              <a href='#'>Health</a>
-            </li>
-            <li className='nav-header__link nav-link'>
-              <a href='#'>Mathematics</a>
-            </li>
-            <li className='nav-header__link nav-link'>
-              <a href='#'>Medical</a>
-            </li>
-            <li className='nav-header__link nav-link'>
-              <a href='#'>Reference</a>
-            </li>
-            <li className='nav-header__link nav-link'>
-              <a href='#'>Science</a>
-            </li>
+            {menu.map((item) => (
+              <li className='nav-header__link nav-link'>
+                <Link
+                  onClick={() => {
+                    setCategoryActive(item);
+                    setIsItSubCategory(true);
+                  }}
+                  to={'/categories'}
+                >
+                  {item}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </nav>
