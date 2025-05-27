@@ -77,7 +77,10 @@ function BookPage() {
                 </p>
                 {currentBook.sale && (
                   <p className='price-book-info__sale-info'>
-                    Скидка {currentBook.sale}% <span className='line-through'>200 ₽</span>
+                    Скидка {currentBook.sale}%{' '}
+                    <span className='line-through'>
+                      {Math.ceil(currentBook.price / (1 - currentBook.sale / 100))} ₽
+                    </span>
                   </p>
                 )}
               </div>
