@@ -1,23 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import IconWish from './IconWish';
 
-const Book = (props) => {
+const Book = (obj) => {
   return (
-    <div className='products__item item-product'>
-      {props.sale ? (
-        <div className='item-product__sale'>
-          <p>{props.sale}%</p>
-          <span>off</span>
-        </div>
-      ) : null}
+    <>
+      <div className='products__item item-product'>
+        <IconWish item={obj} outBookPage={true} />
+        <Link key={obj.id} to={'/bookPage'}>
+          {obj.sale ? (
+            <div className='item-product__sale'>
+              <p>{obj.sale}%</p>
+              <span>off</span>
+            </div>
+          ) : null}
 
-      <div className='item-product__image' onClick={props.onClick}>
-        <img src={props.imageUrl} alt='' />
+          <div className='item-product__image' onClick={obj.onClick}>
+            <img src={obj.imageUrl} alt='' />
+          </div>
+          <h2 className='item-product__title'>
+            {obj.title.length > 20 ? obj.title.slice(0, 20) + '...' : obj.title}
+          </h2>
+          <p className='item-product__price'>{obj.price + ' ₽'}</p>
+        </Link>
       </div>
-      <h2 className='item-product__title'>
-        {props.title.length > 20 ? props.title.slice(0, 20) + '...' : props.title}
-      </h2>
-      <p className='item-product__price'>{props.price + ' ₽'}</p>
-    </div>
+    </>
   );
 };
 

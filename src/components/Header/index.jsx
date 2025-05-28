@@ -3,23 +3,13 @@ import logo from '../../assets/img/logo.png';
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { changeCategory, isItSubCategory } from '../../redux/slices/categorySlice';
-import { MenuContext } from '../../App';
 
 import Search from './Search';
+import Wish from './Wish';
+import Cart from './CartHeader';
+import MenuHeader from './MenuHeader';
 
 function Header() {
-  const dispatch = useDispatch();
-  const { menu } = React.useContext(MenuContext);
-
-  const setCategoryActive = (item) => {
-    dispatch(changeCategory(item));
-  };
-  const setIsItSubCategory = (bool) => {
-    dispatch(isItSubCategory(bool));
-  };
-
   return (
     <header className='header'>
       <div className='header__body body-header'>
@@ -33,39 +23,8 @@ function Header() {
           <Search />
 
           <div className='body-header__items items-header'>
-            <Link to={'/cart'}>
-              <div className='items-header__item cart'>
-                <span className='count'>98</span>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  xmlnsXlink='http://www.w3.org/1999/xlink'
-                  version='1.1'
-                  id='Capa_1'
-                  x='0px'
-                  y='0px'
-                  width='25px'
-                  height='25px'
-                  viewBox='0 0 510 510'
-                  style={{ enableBackground: 'new 0 0 510 510' }}
-                  xmlSpace='preserve'
-                >
-                  <g id='shopping-cart'>
-                    <path d='M153,408c-28.05,0-51,22.95-51,51s22.95,51,51,51s51-22.95,51-51S181.05,408,153,408z M0,0v51h51l91.8,193.8L107.1,306    c-2.55,7.65-5.1,17.85-5.1,25.5c0,28.05,22.95,51,51,51h306v-51H163.2c-2.55,0-5.1-2.55-5.1-5.1v-2.551l22.95-43.35h188.7    c20.4,0,35.7-10.2,43.35-25.5L504.9,89.25c5.1-5.1,5.1-7.65,5.1-12.75c0-15.3-10.2-25.5-25.5-25.5H107.1L84.15,0H0z M408,408    c-28.05,0-51,22.95-51,51s22.95,51,51,51s51-22.95,51-51S436.05,408,408,408z' />
-                  </g>
-                </svg>
-                <span>Корзина</span>
-              </div>
-            </Link>
-
-            <Link to={'/wish'}>
-              <div className='items-header__item wish'>
-                <span className='count count_wish'>5</span>
-                <svg width='25px' height='25px'>
-                  <path d='M12.500,-0.002 C5.596,-0.002 -0.002,5.596 -0.002,12.500 C-0.002,19.405 5.596,25.002 12.500,25.002 C19.405,25.002 25.002,19.405 25.002,12.500 C25.002,5.596 19.405,-0.002 12.500,-0.002 ZM17.025,19.453 L12.445,17.044 L7.865,19.453 L8.740,14.353 L5.034,10.741 L10.155,9.997 L12.445,5.357 L14.734,9.997 L19.855,10.741 L16.150,14.353 L17.025,19.453 Z'></path>
-                </svg>
-                <span>Изиранное</span>
-              </div>
-            </Link>
+            <Cart />
+            <Wish />
 
             <div className='items-header__item account'>
               <svg
@@ -91,25 +50,7 @@ function Header() {
         </div>
       </div>
 
-      <nav className='header__nav nav-header'>
-        <div className='nav-header__container'>
-          <ul className='nav-header__list'>
-            {menu.map((item) => (
-              <li className='nav-header__link nav-link'>
-                <Link
-                  onClick={() => {
-                    setCategoryActive(item);
-                    setIsItSubCategory(true);
-                  }}
-                  to={'/categories'}
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </nav>
+      <MenuHeader />
     </header>
   );
 }

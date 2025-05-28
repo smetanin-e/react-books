@@ -3,6 +3,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCategory, isItSubCategory } from '../redux/slices/categorySlice';
 import { Link } from 'react-router-dom';
+import IconWish from '../components/IconWish';
 function BookPage() {
   const dispatch = useDispatch();
   const currentBook = useSelector((state) => state.currentItem.item);
@@ -12,11 +13,6 @@ function BookPage() {
   };
   const setIsItSubCategory = (bool) => {
     dispatch(isItSubCategory(bool));
-  };
-
-  const [inWish, setInWish] = React.useState(false);
-  const toggleWish = () => {
-    setInWish(!inWish);
   };
 
   console.log(currentBook);
@@ -55,14 +51,8 @@ function BookPage() {
         </nav>
       </div>
       <div className='book-info'>
-        <div
-          onClick={toggleWish}
-          className={inWish ? 'book-info__wish in-wish' : 'book-info__wish'}
-        >
-          <svg width='25px' height='25px'>
-            <path d='M12.500,-0.002 C5.596,-0.002 -0.002,5.596 -0.002,12.500 C-0.002,19.405 5.596,25.002 12.500,25.002 C19.405,25.002 25.002,19.405 25.002,12.500 C25.002,5.596 19.405,-0.002 12.500,-0.002 ZM17.025,19.453 L12.445,17.044 L7.865,19.453 L8.740,14.353 L5.034,10.741 L10.155,9.997 L12.445,5.357 L14.734,9.997 L19.855,10.741 L16.150,14.353 L17.025,19.453 Z'></path>
-          </svg>
-        </div>
+        <IconWish item={currentBook} />
+
         <div className='book-info__image'>
           <img className='image' src={currentBook.imageUrl} alt='book' />
         </div>

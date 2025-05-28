@@ -46,11 +46,26 @@
     // .book-info__instock
   
     &__wish {
+      
       position: absolute;
       right: 10px;
       top: 10px;
+      
       cursor: pointer;
+      &_main {
+        background: #ffffff;
+        left: -10px;
+        top: -10px;
+        width: 27px;
+        height: 27px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+      border-radius: 50%;
+      }
       svg {
+        
         fill: #d6d6d6;        
       }
       
@@ -58,6 +73,7 @@
         transform: scale(0.95);
         transition: transform 0.1s ease-in-out;
       }
+      
     }
   
     // .book-info__image
