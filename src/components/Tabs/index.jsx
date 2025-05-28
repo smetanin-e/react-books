@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Products from '../Products';
+import Pagination from '../Pagination';
 //import TabsPreLoading from './TabsPreLoading';
 
 function Tabs({ items }) {
@@ -16,6 +17,19 @@ function Tabs({ items }) {
   console.log('activeTab=', activeTab);
 
   const tabItems = items.filter((obj) => obj.tab === tabLinks[activeTab]);
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [activeTab]);
+
+  //pagination
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [postsPerPage] = React.useState(15);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentItems = tabItems.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (PageNumber) => setCurrentPage(PageNumber);
 
   return (
     <div className='products-page__books tabs-page'>
@@ -32,16 +46,13 @@ function Tabs({ items }) {
       </ul>
 
       <div className='products-page__items content-tab'>
-        <Products items={tabItems} />
-        <div className='pagination'>
-          <ul className='pagination__list'>
-            <li className='current-page'>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-          </ul>
-        </div>
+        <Products items={currentItems} />
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={tabItems.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
       </div>
 
       {/* <div className='products-page__items content-tab'>

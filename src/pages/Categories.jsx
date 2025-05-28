@@ -4,6 +4,7 @@ import Aside from '../components/Aside';
 import Products from '../components/Products';
 
 import { useSelector } from 'react-redux';
+import Pagination from '../components/Pagination';
 
 function Categories() {
   //создаем состояние для хранения загруженных книг из сервера
@@ -40,6 +41,20 @@ function Categories() {
   }, [activeCategory, url]);
   console.log(activeCategory);
 
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory]);
+
+  //pagination
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [postsPerPage] = React.useState(15);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentItems = items.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (PageNumber) => setCurrentPage(PageNumber);
+
   return (
     <div class='page__products products-page'>
       <Aside isLoading={isLoading} setIsLoading={setIsLoading} />
@@ -47,7 +62,13 @@ function Categories() {
       <div class='products-page__books '>
         <div class='products-page__items'>
           <h1 class='products-page__title'>{activeCategory}</h1>
-          <Products items={items} />
+          <Products items={currentItems} />
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={items.length}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
         </div>
       </div>
     </div>

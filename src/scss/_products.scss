@@ -98,13 +98,13 @@
     
     // .products__item
     &__item {
-        border: 1px solid #e4e1e1;;
+    border: 1px solid #e4e1e1;;
         
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 130px;
-      height: 100%;
+      
       cursor: pointer;
       transition: all 0.2s ease-in-out;
       border-radius: 8px;
@@ -113,10 +113,16 @@
         transform: translateY(-2px);
         transition: all 0.2s ease-in-out;
       }
+      a {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
     }
   }
 .item-product {
     position: relative;
+    
     //display: flex;
     // .item-product__sale
     &__sale {
@@ -139,6 +145,7 @@
       span {
         font-size: 13px;
       }
+      
     }
   
     // .item-product__image
