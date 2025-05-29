@@ -6,8 +6,8 @@ import Button from '../Button';
 
 function AlertPopup({ setPopup }) {
   const dispatch = useDispatch();
-  const onClearCart = (items) => {
-    dispatch(clearCart(items));
+  const onClearCart = () => {
+    dispatch(clearCart());
     setPopup(false);
   };
 
