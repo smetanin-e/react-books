@@ -42,8 +42,10 @@ function Cart() {
               </div>
             </div>
             <div class='item-cart__price'>
-              <p class='item-cart__price-for-one'>{obj.price} ₽</p>
-              <p class='item-cart__price-total'>{obj.price} ₽ x 1 шт.</p>
+              <p class='item-cart__price-for-one'>{obj.price * obj.count} ₽</p>
+              <p class='item-cart__price-total'>
+                {obj.price} ₽ x {obj.count} шт.
+              </p>
             </div>
             <div class='item-cart__buttons buttons-cart'>
               <div class='buttons-cart__container'>
