@@ -14,7 +14,8 @@ const cartSlice = createSlice({
        },
 
        increment(state,action){
-        console.log(action.payload.count);
+        state.items.find((obj) => obj.id === action.payload.id).count ++
+        
         
        }
         
