@@ -87,6 +87,16 @@ main {
             box-shadow: inset 1px 1px 10px #242424;
         }
     }
+    &_blue {
+         border: solid 1px #1884ff;
+        background: linear-gradient(to top, #3f99ff, #5ba5fa);
+        &:hover {
+            background: linear-gradient(to top, #5ba5fa, #77b5fd);
+        }
+        &:active {
+            box-shadow: inset 1px 1px 10px #3f99ff;
+        }
+    }
     &_p {
         padding-inline: 15px;
         padding-block: 10px;

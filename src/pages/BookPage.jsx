@@ -2,17 +2,30 @@ import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCategory, isItSubCategory } from '../redux/slices/categorySlice';
+import { onAddToCart } from '../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
 import IconWish from '../components/IconWish';
 function BookPage() {
   const dispatch = useDispatch();
   const currentBook = useSelector((state) => state.currentItem.item);
-
+  const cartItems = useSelector((state) => state.cart.items);
+  const checkInCart = cartItems.some((elem) => elem.id === currentBook.id);
   const setCategoryActive = (item) => {
     dispatch(changeCategory(item));
   };
   const setIsItSubCategory = (bool) => {
     dispatch(isItSubCategory(bool));
+  };
+
+  const addToCart = (obj) => {
+    const item = {
+      id: obj.id,
+      title: obj.title,
+      author: obj.author,
+      price: obj.price,
+      imageUrl: obj.imageUrl,
+    };
+    dispatch(onAddToCart(item));
   };
 
   console.log(currentBook);
@@ -75,7 +88,18 @@ function BookPage() {
                 )}
               </div>
               <div className='price-book-info__item'>
-                <button className='price-book-info__button btn btn_green'>В корзину</button>
+                {!checkInCart ? (
+                  <button
+                    onClick={() => addToCart(currentBook)}
+                    className='price-book-info__button btn btn_green'
+                  >
+                    В корзину
+                  </button>
+                ) : (
+                  <button className='price-book-info__button btn btn_blue'>
+                    <Link to={'/cart'}>К оформлению</Link>
+                  </button>
+                )}
               </div>
             </div>
             <div className='price-book-info__pay'>
