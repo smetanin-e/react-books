@@ -5,11 +5,14 @@ import { changeCategory, isItSubCategory } from '../redux/slices/categorySlice';
 import { onAddToCart } from '../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
 import IconWish from '../components/IconWish';
+import Button from '../components/Button';
+
 function BookPage() {
   const dispatch = useDispatch();
   const currentBook = useSelector((state) => state.currentItem.item);
   const cartItems = useSelector((state) => state.cart.items);
   const checkInCart = cartItems.some((elem) => elem.id === currentBook.id);
+
   const setCategoryActive = (item) => {
     dispatch(changeCategory(item));
   };
@@ -27,8 +30,6 @@ function BookPage() {
     };
     dispatch(onAddToCart(item));
   };
-
-  console.log(currentBook);
   return (
     <>
       <div className='breadcrumds'>
@@ -71,7 +72,13 @@ function BookPage() {
         </div>
         <div className='book-info__body body-book-info'>
           <h1 className='body-book-info__title'>{currentBook.title}</h1>
-          <p className='body-book-info__text'>{currentBook.description}</p>
+
+          {currentBook.description.split('\n\n').map((p, i) => (
+            <p key={p + i} className='body-book-info__text'>
+              {p}
+            </p>
+          ))}
+          {/* <p className='body-book-info__text'>{currentBook.description}</p> */}
           <div className='body-book-info__price price-book-info'>
             <div className='price-book-info__price'>
               <div className='price-book-info__item'>
@@ -89,16 +96,18 @@ function BookPage() {
               </div>
               <div className='price-book-info__item'>
                 {!checkInCart ? (
-                  <button
-                    onClick={() => addToCart(currentBook)}
-                    className='price-book-info__button btn btn_green'
+                  <Button
+                    handleClick={() => addToCart(currentBook)}
+                    styleClasses={'price-book-info__button btn btn_green'}
                   >
                     В корзину
-                  </button>
+                  </Button>
                 ) : (
-                  <button className='price-book-info__button btn btn_blue'>
-                    <Link to={'/cart'}>К оформлению</Link>
-                  </button>
+                  <Link to={'/cart'}>
+                    <Button styleClasses={'price-book-info__button btn btn_blue'}>
+                      К оформлению
+                    </Button>
+                  </Link>
                 )}
               </div>
             </div>

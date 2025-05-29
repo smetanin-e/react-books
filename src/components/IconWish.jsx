@@ -4,9 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 function IconWish({ item, outBookPage }) {
   const dispatch = useDispatch();
   const wishItems = useSelector((state) => state.currentItem.wishItems);
-  console.log('item=');
-
-  console.log(item);
 
   //const currentBook = useSelector((state) => state.currentItem.item);
   const checkInWish = wishItems.some((elem) => elem.id === item.id);

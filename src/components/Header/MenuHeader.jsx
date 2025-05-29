@@ -17,8 +17,8 @@ function MenuHeader() {
     <nav className='header__nav nav-header'>
       <div className='nav-header__container'>
         <ul className='nav-header__list'>
-          {menu.map((item) => (
-            <li className='nav-header__link nav-link'>
+          {menu.map((item, index) => (
+            <li key={item + index} className='nav-header__link nav-link'>
               <Link
                 onClick={() => {
                   setCategoryActive(item);

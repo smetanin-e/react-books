@@ -7,6 +7,7 @@ import Aside from '../components/Aside';
 import Counter from '../components/Counter';
 import { useDispatch } from 'react-redux';
 import { changeCategory } from '../redux/slices/categorySlice';
+import AlertPopup from '../components/popups/AlertPopup';
 
 function Home() {
   const dispatch = useDispatch();

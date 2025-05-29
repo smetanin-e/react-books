@@ -14,7 +14,6 @@ function Tabs({ items }) {
 
   //создаем состояние, в котором будем хранить активный таб
   const [activeTab, setActiveTab] = React.useState(0);
-  console.log('activeTab=', activeTab);
 
   const tabItems = items.filter((obj) => obj.tab === tabLinks[activeTab]);
   React.useEffect(() => {

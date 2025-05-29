@@ -25,7 +25,6 @@ function Categories() {
   //Оборачиваем запрос данных с сервера в useEffect, чтобы при каждом изменении
   //не было нового рендера
   React.useEffect(() => {
-    console.log('Компонент создан');
     const getData = async () => {
       try {
         const response = await axios.get(url).then((response) => response.data);
@@ -39,7 +38,6 @@ function Categories() {
     };
     getData();
   }, [activeCategory, url]);
-  console.log(activeCategory);
 
   React.useEffect(() => {
     setCurrentPage(1);
@@ -56,12 +54,12 @@ function Categories() {
   const paginate = (PageNumber) => setCurrentPage(PageNumber);
 
   return (
-    <div class='page__products products-page'>
+    <div className='page__products products-page'>
       <Aside isLoading={isLoading} setIsLoading={setIsLoading} />
 
-      <div class='products-page__books '>
-        <div class='products-page__items'>
-          <h1 class='products-page__title'>{activeCategory}</h1>
+      <div className='products-page__books '>
+        <div className='products-page__items'>
+          <h1 className='products-page__title'>{activeCategory}</h1>
           <Products items={currentItems} />
           <Pagination
             postsPerPage={postsPerPage}

@@ -8,7 +8,6 @@ function Pagination({ postsPerPage, totalPosts, paginate, currentPage }) {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
-  console.log(pageNumbers);
 
   return (
     <>

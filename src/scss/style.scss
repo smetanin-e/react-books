@@ -69,10 +69,10 @@ main {
     &_green {
         border: solid 1px #52a452;
         background: linear-gradient(to top, #79b260, #92d774);
-        &:hover {
+        &:not(:disabled):hover {
             background: linear-gradient(to top, #6b9e55, #85c46a);
         }
-        &:active {
+        &:not(:disabled):active {
             box-shadow: inset 1px 1px 10px #578f57;
         }
     }
@@ -80,26 +80,30 @@ main {
     &_black {
         border: solid 1px #232323;
         background: linear-gradient(to top, #242424, #424242);
-        &:hover {
+        &:not(:disabled):hover {
             background: linear-gradient(to top, #424242, #5e5e5e);
         }
-        &:active {
+        &:not(:disabled):active {
             box-shadow: inset 1px 1px 10px #242424;
         }
     }
     &_blue {
          border: solid 1px #1884ff;
         background: linear-gradient(to top, #3f99ff, #5ba5fa);
-        &:hover {
+        &:not(:disabled):hover {
             background: linear-gradient(to top, #5ba5fa, #77b5fd);
         }
-        &:active {
+        &:not(:disabled):active {
             box-shadow: inset 1px 1px 10px #3f99ff;
         }
     }
     &_p {
         padding-inline: 15px;
         padding-block: 10px;
+    }
+    &:disabled {
+        cursor: auto;
+        opacity: 0.5;
     }
 }
 

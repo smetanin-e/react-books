@@ -1,11 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function CartHeader() {
+  const totalCount = useSelector((state) => state.cart.totalCount);
   return (
     <Link to={'/cart'}>
       <div className='items-header__item cart'>
-        <span className='count'>11</span>
+        {totalCount > 0 && <span className='count'>{totalCount < 100 ? totalCount : '99+'}</span>}
+
         <svg
           xmlns='http://www.w3.org/2000/svg'
           xmlnsXlink='http://www.w3.org/1999/xlink'
