@@ -1,6 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const fetchBooks = createAsyncThunk('book/fetchBooksStatus', async () => {
+    const {data} = await axios.get(`https://815c3fb7d56c4537.mokky.dev/books`)
+    return data
+})
+
 
 const initialState = {
+    status: '', // loading | success | error
+    books: [],
     item: [],
     wishItems: []
 }
@@ -20,6 +29,23 @@ const itemSlice = createSlice({
             state.wishItems = state.wishItems.filter(obj => obj.id !== action.payload.id)
         
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchBooks.pending, (state) => {
+            state.books = [];
+            state.status = 'loading';
+            console.log('pending');
+        })
+        builder.addCase(fetchBooks.fulfilled, (state,action) => {
+            state.books = action.payload;
+            state.status = 'success';
+            console.log('success');
+        })
+        builder.addCase(fetchBooks.rejected, (state) => {
+            state.books = [];
+            state.status = 'error';
+            console.log('error');
+        })
     }
 })
 
