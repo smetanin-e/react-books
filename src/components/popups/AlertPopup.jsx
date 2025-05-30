@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './alertPopup.module.scss';
 import { useDispatch } from 'react-redux';
-import { clearCart } from '../../redux/slices/cartSlice';
+import { clearCart } from '../../redux/slices/cartSliceTemp';
 import Button from '../Button';
 
 function AlertPopup({ setPopup }) {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCategory, isItSubCategory } from '../redux/slices/categorySlice';
-import { onAddToCart } from '../redux/slices/cartSlice';
+import { onAddToCart } from '../redux/slices/cartSliceTemp';
 import { Link } from 'react-router-dom';
 import IconWish from '../components/IconWish';
 import Button from '../components/Button';

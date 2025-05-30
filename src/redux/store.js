@@ -4,7 +4,7 @@ import counterReducer from './slices/counterSlise'
 
 import category from './slices/categorySlice'
 import currentItem from './slices/itemSlice'
-import cart from './slices/cartSlice'
+import cart from './slices/cartSliceTemp'
 
 export const store = configureStore({
   reducer: {
