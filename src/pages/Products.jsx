@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import Aside from '../components/Aside';
-import Products from '../components/Products';
+import Items from '../components/Items';
 
 import { useSelector } from 'react-redux';
 import Pagination from '../components/Pagination';
 
-function Categories() {
+function Products() {
   //создаем состояние для хранения загруженных книг из сервера
   const [items, setItems] = React.useState([]);
 
@@ -60,7 +60,7 @@ function Categories() {
       <div className='products-page__books '>
         <div className='products-page__items'>
           <h1 className='products-page__title'>{activeCategory}</h1>
-          <Products items={currentItems} />
+          <Items items={currentItems} />
           <Pagination
             postsPerPage={postsPerPage}
             totalPosts={items.length}
@@ -73,4 +73,4 @@ function Categories() {
   );
 }
 
-export default Categories;
+export default Products;

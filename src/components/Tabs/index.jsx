@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Products from '../Products';
+import Items from '../Items';
 import Pagination from '../Pagination';
 //import TabsPreLoading from './TabsPreLoading';
 import { useSelector } from 'react-redux';
@@ -45,7 +45,7 @@ function Tabs() {
       </ul>
 
       <div className='products-page__items content-tab'>
-        <Products items={currentItems} />
+        <Items items={currentItems} />
 
         <Pagination
           postsPerPage={postsPerPage}

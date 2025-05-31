@@ -2,7 +2,7 @@ import Book from './Book';
 import { useDispatch } from 'react-redux';
 import { onClickItem } from '../redux/slices/itemSlice';
 
-function Products({ items }) {
+function Items({ items }) {
   const dispatch = useDispatch();
 
   return (
@@ -14,4 +14,4 @@ function Products({ items }) {
   );
 }
 
-export default Products;
+export default Items;

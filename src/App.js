@@ -7,10 +7,10 @@ import Footer from './components/Footer';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 
-import { Home, Wish, BookPage, Categories, NotFoundPage, Cart} from './pages/';
+import { Home, Wish, BookPage, Products, NotFoundPage, Cart} from './pages/';
 
 
-//создаем контекст для передачи массива из aside в header
+
 
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
                             <Route path='/cart' element={<Cart />} />
                             <Route path='/wish' element={<Wish />} />
                             <Route path='/bookPage' element={<BookPage />} />
-                            <Route path='/categories' element={<Categories />} />
+                            <Route path='/products' element={<Products />} />
                             <Route path='*' element={<NotFoundPage />} />
                         </Routes>
                     </div>
