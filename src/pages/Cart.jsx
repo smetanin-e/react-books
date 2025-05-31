@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, removeCartItem } from '../redux/slices/cartSliceTemp';
+import { increment, decrement, removeCartItem } from '../redux/slices/cartSlice';
 import Button from '../components/Button';
 import AlertPopup from '../components/popups/AlertPopup';
 

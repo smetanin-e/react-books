@@ -4,10 +4,8 @@ import Banner from '../components/Banner';
 import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
-import Counter from '../components/Counter';
 import { useDispatch } from 'react-redux';
 import { changeCategory } from '../redux/slices/categorySlice';
-import AlertPopup from '../components/popups/AlertPopup';
 
 function Home() {
   const dispatch = useDispatch();
@@ -55,7 +53,6 @@ function Home() {
         <Slider />
         <Banner isLoading={isLoading} bestOffer={bestOffer} />
       </div>
-      <Counter />
       <div className='page__products products-page'>
         <Aside isLoading={isLoading} setIsLoading={setIsLoading} />
 
