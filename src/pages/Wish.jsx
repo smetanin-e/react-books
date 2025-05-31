@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Items from '../components/Items';
 
 const Wish = () => {
-  const wishItems = useSelector((state) => state.currentItem.wishItems);
+  const wishItems = useSelector((state) => state.books.wishItems);
   return (
     <div>
       <h1 className='body-book-info__title'>Твой список желаемых книг:</h1>
