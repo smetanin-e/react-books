@@ -67,7 +67,7 @@ function Aside() {
           {categoryTitles.map((value, index) => (
             <div key={value + index} className='categories__item item-category'>
               <Link
-                to={'/categories'}
+                to={'/products'}
                 onClick={() => {
                   setCategoryActive(value);
                   setIsItSubCategory(false);
@@ -93,7 +93,7 @@ function Aside() {
                       }
                     >
                       <Link
-                        to={'/categories'}
+                        to={'/products'}
                         onClick={() => {
                           setCategoryActive(subCategory);
                           setIsItSubCategory(true);

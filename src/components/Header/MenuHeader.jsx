@@ -23,7 +23,7 @@ function MenuHeader() {
                   setCategoryActive(item);
                   setIsItSubCategory(true);
                 }}
-                to={'/categories'}
+                to={'/products'}
               >
                 {item}
               </Link>
