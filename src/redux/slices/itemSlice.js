@@ -10,6 +10,8 @@ export const fetchBooks = createAsyncThunk('book/fetchBooksStatus', async () => 
 const initialState = {
     status: '', // loading | success | error
     books: [],
+    menu: [],
+    banner: {},
     item: [],
     wishItems: []
 }
@@ -39,6 +41,16 @@ const itemSlice = createSlice({
         builder.addCase(fetchBooks.fulfilled, (state,action) => {
             state.books = action.payload;
             state.status = 'success';
+            //получаем 7 категорий для меню в header
+            state.menu = [...new Set(action.payload.map((obj) => obj.subCategory))]
+              .filter((item) => !item.includes(' '))
+              .slice(0, 7)
+
+            //получаем объект у которого самая большая скидка(sale)
+            state.banner = action.payload
+            .filter((obj) => obj.sale)
+            .reduce((prev, cur) => (+cur.sale > +prev.sale ? cur : prev))
+
             console.log('success');
         })
         builder.addCase(fetchBooks.rejected, (state) => {

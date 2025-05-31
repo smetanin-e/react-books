@@ -1,51 +1,31 @@
 import React from 'react';
-import axios from 'axios';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCategory, isItSubCategory } from '../../redux/slices/categorySlice';
 
 import AsidePreLoading from './AsidePreLoading';
 import { Link } from 'react-router-dom';
-import { MenuContext } from '../../App';
+import { fetchBooks } from '../../redux/slices/itemSlice';
 
-function Aside({ isLoading, setIsLoading }) {
-  const { menu, setMenu } = React.useContext(MenuContext);
-
-  const [data, setData] = React.useState([]); //состояние для хранения данных их БД
-
-  //При первом рендере получаем все объекты из базы данных для формирования всех категорий и подкатегорий
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios
-          .get('https://815c3fb7d56c4537.mokky.dev/books')
-          .then((response) => response.data);
-        setData(response);
-
-        //создаем ссылки для меню, которые передадим в header через контекст.
-
-        setMenu(
-          [...new Set(response.map((obj) => obj.subCategory))]
-            .filter((item) => !item.includes(' '))
-            .slice(0, 7),
-        );
-      } catch (error) {
-        console.log(error.message || 'Произошла ошибка');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getData();
-  }, [setIsLoading, setMenu]);
-
+function Aside() {
   const dispatch = useDispatch();
+
+  const { books, status } = useSelector((state) => state.books);
   const activeCategory = useSelector((state) => state.category.curentCategory);
+  const getBooks = async () => {
+    dispatch(fetchBooks());
+  };
+
+  React.useEffect(() => {
+    getBooks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const setCategoryActive = (item) => {
     dispatch(changeCategory(item));
   };
-  const setIsItSubCategory = (bool) => {
-    dispatch(isItSubCategory(bool));
+  const setIsItSubCategory = (value) => {
+    dispatch(isItSubCategory(value));
   };
 
   //создаем функцию, которая принимает в качестве аргументов массив объектов с книгами,
@@ -74,13 +54,12 @@ function Aside({ isLoading, setIsLoading }) {
 
     return result;
   };
-
-  const categories = categoriesFromDataBase(data, 'category', 'subCategory');
+  const categories = categoriesFromDataBase(books, 'category', 'subCategory');
   const categoryTitles = Object.keys(categories);
 
   return (
     <aside className='products-page__categories categories'>
-      {isLoading ? (
+      {status === 'loading' ? (
         <AsidePreLoading />
       ) : (
         <>

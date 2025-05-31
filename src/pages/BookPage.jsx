@@ -9,7 +9,7 @@ import Button from '../components/Button';
 
 function BookPage() {
   const dispatch = useDispatch();
-  const currentBook = useSelector((state) => state.currentItem.item);
+  const currentBook = useSelector((state) => state.books.item);
   const cartItems = useSelector((state) => state.cart.items);
   const checkInCart = cartItems.some((elem) => elem.id === currentBook.id);
 

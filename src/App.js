@@ -11,15 +11,15 @@ import { Home, Wish, BookPage, Categories, NotFoundPage, Cart} from './pages/';
 
 
 //создаем контекст для передачи массива из aside в header
-export const MenuContext = React.createContext()
+
 
 function App() {
-const [menu, setMenu] = React.useState([])
+
     
   return (
     <Provider store={store}>
         <div className="wrapper">
-            <MenuContext.Provider value={{ menu, setMenu }}>
+           
                 <Header/>
         
                 <main className="page">
@@ -36,7 +36,7 @@ const [menu, setMenu] = React.useState([])
                 </main>
                 
                 <Footer />
-            </MenuContext.Provider>
+           
         
         </div>
     </Provider>

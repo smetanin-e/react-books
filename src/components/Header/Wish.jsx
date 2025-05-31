@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function Wish() {
-  const countWish = useSelector((state) => state.currentItem.wishItems.length);
+  const countWish = useSelector((state) => state.books.wishItems.length);
 
   return (
     <Link to={'/wish'}>

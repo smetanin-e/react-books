@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeCategory, isItSubCategory } from '../../redux/slices/categorySlice';
-import { MenuContext } from '../../App';
 function MenuHeader() {
   const dispatch = useDispatch();
-  const { menu } = React.useContext(MenuContext);
+  const menu = useSelector((state) => state.books.menu);
 
   const setCategoryActive = (item) => {
     dispatch(changeCategory(item));

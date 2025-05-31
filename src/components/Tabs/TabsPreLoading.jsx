@@ -4,14 +4,15 @@ function TabsPreLoading() {
   return (
     <ContentLoader
       speed={2}
-      width={826}
-      height={40}
-      viewBox='0 0 826 40'
+      width={1000}
+      height={1000}
+      viewBox='0 0 1000 1000'
       backgroundColor='#f3f3f3'
       foregroundColor='#ecebeb'
     >
-      <rect x='18' y='520' rx='0' ry='0' width='160' height='24' />
-      <rect x='0' y='0' rx='0' ry='0' width='620' height='42' />
+      <rect x='203' y='33' rx='0' ry='0' width='72' height='105' />
+      <rect x='204' y='145' rx='0' ry='0' width='70' height='17' />
+      <rect x='223' y='167' rx='0' ry='0' width='36' height='16' />
     </ContentLoader>
   );
 }

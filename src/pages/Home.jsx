@@ -18,9 +18,6 @@ function Home() {
   //создаем состояние для хранения загруженных книг из БД
   const [items, setItems] = React.useState([]);
 
-  //создаем состояние для хранения книги для баннера
-  const [bestOffer, setBestOffer] = React.useState({});
-
   //ссылка на массив объектов, содержащий книги
   const url = 'https://815c3fb7d56c4537.mokky.dev/books';
 
@@ -33,11 +30,6 @@ function Home() {
         setItems(response);
         setIsLoading(false);
         //Ищем книгу с максимальной скидкой и передаем ее в баннер
-        setBestOffer(
-          response
-            .filter((obj) => obj.sale)
-            .reduce((prev, cur) => (+cur.sale > +prev.sale ? cur : prev)),
-        );
       } catch (error) {
         console.log(error.message || 'Произошла ошибка');
       } finally {
@@ -51,12 +43,12 @@ function Home() {
     <>
       <div className='page__banner baner-page'>
         <Slider />
-        <Banner isLoading={isLoading} bestOffer={bestOffer} />
+        <Banner />
       </div>
       <div className='page__products products-page'>
-        <Aside isLoading={isLoading} setIsLoading={setIsLoading} />
+        <Aside />
 
-        {isLoading ? <div>loading</div> : <Tabs items={items} />}
+        <Tabs />
       </div>
     </>
   );
