@@ -28,7 +28,7 @@ function App() {
                             <Route path='/' element={<Home />} />
                             <Route path='/cart' element={<Cart />} />
                             <Route path='/wish' element={<Wish />} />
-                            <Route path='/bookPage' element={<BookPage />} />
+                            <Route path='/bookPage/:id' element={<BookPage />} />
                             <Route path='/products' element={<Products />} />
                             <Route path='*' element={<NotFoundPage />} />
                         </Routes>

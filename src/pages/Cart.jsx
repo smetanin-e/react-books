@@ -54,7 +54,9 @@ function Cart() {
                 <img className='image' src={obj.imageUrl} alt='' />
               </div>
               <div className='item-cart__description'>
-                <h2 className='item-cart__title'>{obj.title}</h2>
+                <h2 onClick={() => alert(obj.title)} className='item-cart__title'>
+                  {obj.title}
+                </h2>
                 <p className='item-cart__author'>{obj.author}</p>
               </div>
               <div className='item-cart__counter counter-cart'>

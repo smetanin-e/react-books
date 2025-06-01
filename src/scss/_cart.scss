@@ -75,6 +75,10 @@
   
       margin-bottom: 10px;
       font-weight: 300;
+      cursor: pointer;
+      &:hover {
+        text-decoration:underline;
+      }
     }
   
     // .item-cart__author

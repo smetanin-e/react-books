@@ -1,23 +1,21 @@
 import React from 'react';
-
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCategory, isItSubCategory } from '../redux/slices/categorySlice';
 import { onAddToCart } from '../redux/slices/cartSlice';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import IconWish from '../components/IconWish';
 import Button from '../components/Button';
 
 function BookPage() {
   const dispatch = useDispatch();
-  const currentBook = useSelector((state) => state.books.item);
   const cartItems = useSelector((state) => state.cart.items);
-  const checkInCart = cartItems.some((elem) => elem.id === currentBook.id);
 
   const setCategoryActive = (item) => {
     dispatch(changeCategory(item));
   };
-  const setIsItSubCategory = (bool) => {
-    dispatch(isItSubCategory(bool));
+  const setIsItSubCategory = (value) => {
+    dispatch(isItSubCategory(value));
   };
 
   const addToCart = (obj) => {
@@ -30,6 +28,28 @@ function BookPage() {
     };
     dispatch(onAddToCart(item));
   };
+
+  const [book, setBook] = React.useState();
+  const { id } = useParams();
+
+  React.useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const { data } = await axios.get('https://815c3fb7d56c4537.mokky.dev/books/' + id);
+        setBook(data);
+      } catch (error) {
+        alert('Не удалось загрузить станицу');
+      }
+    };
+    fetchItem();
+  }, [id]);
+
+  if (!book) {
+    return <>Загрузка...</>;
+  }
+
+  const checkInCart = cartItems.some((elem) => elem.id === book.id);
+
   return (
     <>
       <div className='breadcrumds'>
@@ -42,38 +62,38 @@ function BookPage() {
             <li>
               <Link
                 onClick={() => {
-                  setCategoryActive(currentBook.category);
+                  setCategoryActive(book.category);
                   setIsItSubCategory(false);
                 }}
-                to={'/categories'}
+                to={'/products'}
               >
-                {currentBook.category}
+                {book.category}
               </Link>
             </li>
             <li>
               <Link
                 onClick={() => {
-                  setCategoryActive(currentBook.subCategory);
+                  setCategoryActive(book.subCategory);
                   setIsItSubCategory(true);
                 }}
-                to={'/categories'}
+                to={'/products'}
               >
-                {currentBook.subCategory}
+                {book.subCategory}
               </Link>
             </li>
           </ul>
         </nav>
       </div>
       <div className='book-info'>
-        <IconWish item={currentBook} />
+        <IconWish item={book} />
 
         <div className='book-info__image'>
-          <img className='image' src={currentBook.imageUrl} alt='book' />
+          <img className='image' src={book.imageUrl} alt='book' />
         </div>
         <div className='book-info__body body-book-info'>
-          <h1 className='body-book-info__title'>{currentBook.title}</h1>
+          <h1 className='body-book-info__title'>{book.title}</h1>
 
-          {currentBook.description.split('\n\n').map((p, i) => (
+          {book.description.split('\n\n').map((p, i) => (
             <p key={p + i} className='body-book-info__text'>
               {p}
             </p>
@@ -83,13 +103,13 @@ function BookPage() {
             <div className='price-book-info__price'>
               <div className='price-book-info__item'>
                 <p className='price-book-info__item-price'>
-                  Цена: <span>{currentBook.price} ₽</span>
+                  Цена: <span>{book.price} ₽</span>
                 </p>
-                {currentBook.sale && (
+                {book.sale && (
                   <p className='price-book-info__sale-info'>
-                    Скидка {currentBook.sale}%{' '}
+                    Скидка {book.sale}%{' '}
                     <span className='line-through'>
-                      {Math.ceil(currentBook.price / (1 - currentBook.sale / 100))} ₽
+                      {Math.ceil(book.price / (1 - book.sale / 100))} ₽
                     </span>
                   </p>
                 )}
@@ -97,7 +117,7 @@ function BookPage() {
               <div className='price-book-info__item'>
                 {!checkInCart ? (
                   <Button
-                    handleClick={() => addToCart(currentBook)}
+                    handleClick={() => addToCart(book)}
                     styleClasses={'price-book-info__button btn btn_green'}
                   >
                     В корзину

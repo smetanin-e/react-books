@@ -12,7 +12,6 @@ const initialState = {
     books: [],
     menu: [],
     banner: {},
-    item: [],
     wishItems: []
 }
 
@@ -20,10 +19,6 @@ const itemSlice = createSlice({
     name: 'item',
     initialState,
     reducers: {
-        onClickItem(state,action) {
-            state.item = action.payload
-        },
-
         onCheckWish(state,action){
         state.wishItems.push(action.payload)
         },
@@ -61,5 +56,5 @@ const itemSlice = createSlice({
     }
 })
 
-export const {onClickItem,onCheckWish, onRemoveWish} = itemSlice.actions
+export const {onCheckWish, onRemoveWish} = itemSlice.actions
 export default itemSlice.reducer
