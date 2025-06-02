@@ -7,7 +7,7 @@ import AsidePreLoading from './AsidePreLoading';
 import { Link } from 'react-router-dom';
 import { fetchBooks } from '../../redux/slices/itemSlice';
 
-function Aside() {
+const Aside = () => {
   const dispatch = useDispatch();
 
   const { books, status } = useSelector((state) => state.books);
@@ -110,6 +110,6 @@ function Aside() {
       )}
     </aside>
   );
-}
+};
 
 export default Aside;
