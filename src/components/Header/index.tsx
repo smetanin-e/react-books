@@ -33,7 +33,6 @@ function Header() {
                 xmlns='http://www.w3.org/2000/svg'
                 xmlnsXlink='http://www.w3.org/1999/xlink'
                 id='Layer_1'
-                style={{ enableBackground: 'new 0 0 128 128' }}
                 version='1.1'
                 viewBox='0 0 128 128'
                 xmlSpace='preserve'

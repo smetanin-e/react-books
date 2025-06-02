@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-function itemsSceleton() {
+const itemsSceleton: React.FC = () => {
   return (
     <ContentLoader
       speed={2}
@@ -15,6 +15,6 @@ function itemsSceleton() {
       <rect x='32' y='220' rx='0' ry='0' width='65' height='25' />
     </ContentLoader>
   );
-}
+};
 
 export default itemsSceleton;
