@@ -1,6 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-const initialState = {
+type CartItem = {
+    id: number
+    imageUrl: string
+    title: string
+    author: string
+    price:number
+    count:number
+}
+
+interface CartState {
+    items: CartItem[]
+    totalCount: number
+    totalPrice: Number
+}
+
+const initialState:CartState = {
     items: [],
     totalCount: 0,
     totalPrice: 0
@@ -10,20 +25,27 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-       onAddToCart(state,action){
+       onAddToCart(state,action:PayloadAction<CartItem>){
         
         state.items.push({...action.payload, count: 1})
         state.totalCount = state.items.reduce((acc,obj) => acc + obj.count, 0)
         state.totalPrice = state.items.reduce((acc,obj) => acc + obj.count * obj.price, 0)
        },
 
-       increment(state,action){
-        state.items.find((obj) => obj.id === action.payload.id).count ++
+       increment(state,action:PayloadAction<{id:number}>){
+        const item = state.items.find((obj) => obj.id === action.payload.id)
+        if (item) {
+            item.count ++
+        }
+        
         state.totalCount = state.items.reduce((acc,obj) => acc + obj.count, 0)
         state.totalPrice = state.items.reduce((acc,obj) => acc + obj.count * obj.price, 0)
        },
-       decrement: (state,action) => {
-        state.items.find((obj) => obj.id === action.payload.id).count --
+       decrement: (state,action:PayloadAction<{id:number}>) => {
+        const item = state.items.find((obj) => obj.id === action.payload.id)
+        if (item) {
+            item.count --
+        }
         state.totalCount = state.items.reduce((acc,obj) => acc + obj.count, 0)
         state.totalPrice = state.items.reduce((acc,obj) => acc + obj.count * obj.price, 0)
     },
@@ -32,7 +54,7 @@ const cartSlice = createSlice({
         state.totalPrice = 0
         state.items = []
     },
-      removeCartItem(state,action) {
+      removeCartItem(state,action:PayloadAction<{id:number}>) {
         state.items = state.items.filter(item => item.id !== action.payload.id)
         state.totalCount = state.items.reduce((acc,obj) => acc + obj.count, 0)
         state.totalPrice = state.items.reduce((acc,obj) => acc + obj.count * obj.price, 0)

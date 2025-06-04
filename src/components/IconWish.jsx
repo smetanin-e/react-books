@@ -1,5 +1,5 @@
 import React from 'react';
-import { onCheckWish, onRemoveWish } from '../redux/slices/itemSlice';
+import { addWish, onRemoveWish } from '../redux/slices/itemSlice';
 import { useSelector, useDispatch } from 'react-redux';
 function IconWish({ item, outBookPage }) {
   const dispatch = useDispatch();
@@ -8,7 +8,7 @@ function IconWish({ item, outBookPage }) {
   //const currentBook = useSelector((state) => state.books.item);
   const checkInWish = wishItems.some((elem) => elem.id === item.id);
   const addToWish = (obj) => {
-    dispatch(onCheckWish(obj));
+    dispatch(addWish(obj));
   };
   const removeWish = (obj) => {
     dispatch(onRemoveWish(obj));
