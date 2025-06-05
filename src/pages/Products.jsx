@@ -5,6 +5,8 @@ import Items from '../components/Items';
 
 import { useSelector } from 'react-redux';
 import Pagination from '../components/Pagination';
+import { RootState } from '../redux/store';
+import { ItemBook } from '../redux/slices/itemSlice';
 
 function Products() {
   //создаем состояние для хранения загруженных книг из сервера

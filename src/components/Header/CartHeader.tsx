@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { RootState } from '../../redux/store';
 
 function CartHeader() {
-  const totalCount = useSelector((state) => state.cart.totalCount);
+  const totalCount = useSelector((state: RootState) => state.cart.totalCount);
   return (
     <Link to={'/cart'}>
       <div className='items-header__item cart'>
@@ -19,7 +20,6 @@ function CartHeader() {
           width='25px'
           height='25px'
           viewBox='0 0 510 510'
-          style={{ enableBackground: 'new 0 0 510 510' }}
           xmlSpace='preserve'
         >
           <g id='shopping-cart'>

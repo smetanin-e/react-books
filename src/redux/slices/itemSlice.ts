@@ -8,10 +8,10 @@ export type ItemBook = {
     imageUrl: string
     title: string
     author: string
-    //description:string
+    description?:string
     price:number
     sale?:number
-    //tab?:string
+    tab?:string
     //slider?:boolean
    category:string
     subCategory:string

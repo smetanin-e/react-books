@@ -1,16 +1,23 @@
 import React from 'react';
-import { addWish, onRemoveWish } from '../redux/slices/itemSlice';
-import { useSelector, useDispatch } from 'react-redux';
-function IconWish({ item, outBookPage }) {
-  const dispatch = useDispatch();
-  const wishItems = useSelector((state) => state.books.wishItems);
+import { addWish, ItemBook, onRemoveWish } from '../redux/slices/itemSlice';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../redux/store';
+
+type IconWishProps = {
+  item: ItemBook;
+  outBookPage?: boolean;
+};
+
+const IconWish: React.FC<IconWishProps> = ({ item, outBookPage }) => {
+  const dispatch = useAppDispatch();
+  const wishItems = useSelector((state: RootState) => state.books.wishItems);
 
   //const currentBook = useSelector((state) => state.books.item);
   const checkInWish = wishItems.some((elem) => elem.id === item.id);
-  const addToWish = (obj) => {
+  const addToWish = (obj: ItemBook) => {
     dispatch(addWish(obj));
   };
-  const removeWish = (obj) => {
+  const removeWish = (obj: ItemBook) => {
     dispatch(onRemoveWish(obj));
   };
 
@@ -32,6 +39,6 @@ function IconWish({ item, outBookPage }) {
       </svg>
     </div>
   );
-}
+};
 
 export default IconWish;

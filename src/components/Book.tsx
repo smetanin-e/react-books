@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import IconWish from './IconWish';
 
-const Book = (obj) => {
+import { ItemBook } from '../redux/slices/itemSlice';
+const Book = (obj: ItemBook) => {
   return (
     <>
       <div className='products__item item-product'>
@@ -14,7 +15,7 @@ const Book = (obj) => {
             </div>
           ) : null}
 
-          <div className='item-product__image' onClick={obj.onClick}>
+          <div className='item-product__image'>
             <img src={obj.imageUrl} alt='' />
           </div>
           <h2 className='item-product__title'>

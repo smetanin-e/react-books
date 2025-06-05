@@ -6,19 +6,21 @@ import { onAddToCart } from '../redux/slices/cartSlice';
 import { Link, useParams } from 'react-router-dom';
 import IconWish from '../components/IconWish';
 import Button from '../components/Button';
+import { RootState, useAppDispatch } from '../redux/store';
+import { ItemBook } from '../redux/slices/itemSlice';
 
 function BookPage() {
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useAppDispatch();
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const setCategoryActive = (item) => {
+  const setCategoryActive = (item: string) => {
     dispatch(changeCategory(item));
   };
-  const setIsItSubCategory = (value) => {
+  const setIsItSubCategory = (value: boolean) => {
     dispatch(isItSubCategory(value));
   };
 
-  const addToCart = (obj) => {
+  const addToCart = (obj: ItemBook) => {
     const item = {
       id: obj.id,
       title: obj.title,
@@ -29,7 +31,7 @@ function BookPage() {
     dispatch(onAddToCart(item));
   };
 
-  const [book, setBook] = React.useState();
+  const [book, setBook] = React.useState<ItemBook>();
   const { id } = useParams();
 
   React.useEffect(() => {
@@ -93,11 +95,12 @@ function BookPage() {
         <div className='book-info__body body-book-info'>
           <h1 className='body-book-info__title'>{book.title}</h1>
 
-          {book.description.split('\n\n').map((p, i) => (
-            <p key={p + i} className='body-book-info__text'>
-              {p}
-            </p>
-          ))}
+          {book.description &&
+            book.description.split('\n\n').map((p, i) => (
+              <p key={p + i} className='body-book-info__text'>
+                {p}
+              </p>
+            ))}
           {/* <p className='body-book-info__text'>{currentBook.description}</p> */}
           <div className='body-book-info__price price-book-info'>
             <div className='price-book-info__price'>

@@ -2,15 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeCategory, isItSubCategory } from '../../redux/slices/categorySlice';
+import { RootState, useAppDispatch } from '../../redux/store';
 function MenuHeader() {
-  const dispatch = useDispatch();
-  const menu = useSelector((state) => state.books.menu);
+  const dispatch = useAppDispatch();
+  const menu = useSelector((state: RootState) => state.books.menu);
 
-  const setCategoryActive = (item) => {
+  const setCategoryActive = (item: string) => {
     dispatch(changeCategory(item));
   };
-  const setIsItSubCategory = (bool) => {
-    dispatch(isItSubCategory(bool));
+  const setIsItSubCategory = (value: boolean) => {
+    dispatch(isItSubCategory(value));
   };
   return (
     <nav className='header__nav nav-header'>

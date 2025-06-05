@@ -7,7 +7,7 @@ type CartItem = {
     title: string
     author: string
     price:number
-    count:number
+    count?:number
 }
 
 interface CartSliceState {
@@ -29,26 +29,26 @@ const cartSlice = createSlice({
        onAddToCart(state,action:PayloadAction<CartItem>){
         
         state.items.push({...action.payload, count: 1})
-        state.totalCount = state.items.reduce((acc,obj) => acc + obj.count, 0)
-        state.totalPrice = state.items.reduce((acc,obj) => acc + obj.count * obj.price, 0)
+        state.totalCount = state.items.reduce((acc,obj) => acc + (obj.count || 0), 0)
+        state.totalPrice = state.items.reduce((acc,obj) => acc + (obj.count || 0) * obj.price, 0)
        },
 
        increment(state,action:PayloadAction<{id:number}>){
         const item = state.items.find((obj) => obj.id === action.payload.id)
-        if (item) {
+        if (item?.count) {
             item.count ++
         }
         
-        state.totalCount = state.items.reduce((acc,obj) => acc + obj.count, 0)
-        state.totalPrice = state.items.reduce((acc,obj) => acc + obj.count * obj.price, 0)
+        state.totalCount = state.items.reduce((acc,obj) => acc + (obj.count || 0), 0)
+        state.totalPrice = state.items.reduce((acc,obj) => acc + (obj.count || 0) * obj.price, 0)
        },
        decrement: (state,action:PayloadAction<{id:number}>) => {
         const item = state.items.find((obj) => obj.id === action.payload.id)
-        if (item) {
+        if (item?.count) {
             item.count --
         }
-        state.totalCount = state.items.reduce((acc,obj) => acc + obj.count, 0)
-        state.totalPrice = state.items.reduce((acc,obj) => acc + obj.count * obj.price, 0)
+        state.totalCount = state.items.reduce((acc,obj) => acc + (obj.count || 0), 0)
+        state.totalPrice = state.items.reduce((acc,obj) => acc + (obj.count || 0) * obj.price, 0)
     },
        clearCart(state){
         state.totalCount = 0
@@ -57,8 +57,8 @@ const cartSlice = createSlice({
     },
       removeCartItem(state,action:PayloadAction<{id:number}>) {
         state.items = state.items.filter(item => item.id !== action.payload.id)
-        state.totalCount = state.items.reduce((acc,obj) => acc + obj.count, 0)
-        state.totalPrice = state.items.reduce((acc,obj) => acc + obj.count * obj.price, 0)
+        state.totalCount = state.items.reduce((acc,obj) => acc + (obj.count || 0), 0)
+        state.totalPrice = state.items.reduce((acc,obj) => acc + (obj.count || 0) * obj.price, 0)
       }
     
     }

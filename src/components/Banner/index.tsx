@@ -6,13 +6,10 @@ import { RootState } from '../../redux/store';
 
 function Banner() {
   const { banner, status } = useSelector((state: RootState) => state.books);
-  if (banner === null) {
-    return <></>;
-  }
 
   return (
     <>
-      {status === 'loading' ? (
+      {status === 'loading' || banner === null ? (
         <BannerPreLoading />
       ) : (
         <div className='baner-page__banner banner'>

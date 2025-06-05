@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { increment, decrement, removeCartItem } from '../redux/slices/cartSlice';
 import Button from '../components/Button';
 import AlertPopup from '../components/popups/AlertPopup';
@@ -67,7 +67,7 @@ function Cart() {
                       countMinus(obj);
                     }}
                     styleClasses={'counter-cart__button btn btn_green'}
-                    disabled={obj.count < 2}
+                    disabled={obj.count ? obj.count < 2 : false}
                   >
                     -
                   </Button>
@@ -84,7 +84,7 @@ function Cart() {
                 </div>
               </div>
               <div className='item-cart__price'>
-                <p className='item-cart__price-for-one'>{obj.price * obj.count} ₽</p>
+                <p className='item-cart__price-for-one'>{obj.price * (obj.count || 1)} ₽</p>
                 <p className='item-cart__price-total'>
                   {obj.count} шт. x {obj.price} ₽
                 </p>

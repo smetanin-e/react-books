@@ -4,6 +4,7 @@ import Items from '../Items';
 import Pagination from '../Pagination';
 //import TabsPreLoading from './TabsPreLoading';
 import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 function Tabs() {
   //Список табов
   const tabLinks = ['Бестселлеры', 'Новинки', 'Подержанные ', 'Спец. предложение'];
@@ -14,7 +15,7 @@ function Tabs() {
 
   //создаем состояние, в котором будем хранить активный таб
   const [activeTab, setActiveTab] = React.useState(0);
-  const { books } = useSelector((state) => state.books);
+  const { books } = useSelector((state: RootState) => state.books);
   const tabItems = books.filter((obj) => obj.tab === tabLinks[activeTab]);
 
   React.useEffect(() => {
@@ -22,13 +23,13 @@ function Tabs() {
   }, [activeTab]);
 
   //pagination
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const [postsPerPage] = React.useState(15);
+  const [currentPage, setCurrentPage] = React.useState<number>(1);
+  const [postsPerPage] = React.useState<number>(15);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentItems = tabItems.slice(indexOfFirstPost, indexOfLastPost);
-  const paginate = (PageNumber) => setCurrentPage(PageNumber);
+  const paginate = (PageNumber: number) => setCurrentPage(PageNumber);
 
   return (
     <div className='products-page__books tabs-page'>
