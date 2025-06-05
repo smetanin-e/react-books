@@ -2,9 +2,13 @@ import posterBg from '../../assets/img/baner/poster-bg.png';
 
 import { useSelector } from 'react-redux';
 import BannerPreLoading from './BannerPreLoading';
+import { RootState } from '../../redux/store';
 
 function Banner() {
-  const { banner, status } = useSelector((state) => state.books);
+  const { banner, status } = useSelector((state: RootState) => state.books);
+  if (banner === null) {
+    return <></>;
+  }
 
   return (
     <>

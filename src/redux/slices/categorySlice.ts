@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-type CategoryState = {
+type CategorySliceState = {
     curentCategory: string
     itSubCategory: boolean
 }
 
-const initialState:CategoryState = {
+const initialState:CategorySliceState = {
     curentCategory: '',
     itSubCategory: false
 }

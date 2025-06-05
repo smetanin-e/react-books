@@ -3,22 +3,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement, removeCartItem } from '../redux/slices/cartSlice';
 import Button from '../components/Button';
 import AlertPopup from '../components/popups/AlertPopup';
+import { RootState, useAppDispatch } from '../redux/store';
 
 function Cart() {
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.items);
-  const totalCount = useSelector((state) => state.cart.totalCount);
-  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const dispatch = useAppDispatch();
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const totalCount = useSelector((state: RootState) => state.cart.totalCount);
+  const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
 
-  const countPlus = (count) => {
+  const countPlus = (count: { id: number }) => {
     dispatch(increment(count));
   };
 
-  const countMinus = (count) => {
+  const countMinus = (count: { id: number }) => {
     dispatch(decrement(count));
   };
 
-  const removeItem = (id) => {
+  const removeItem = (id: { id: number }) => {
     dispatch(removeCartItem(id));
   };
 
@@ -103,7 +104,7 @@ function Cart() {
         </div>
         <div className='total'>
           <p className='total__total-count'>Товары, {totalCount} шт.</p>
-          <p className='total__total-price'>Итого - {totalPrice} ₽</p>
+          <p className='total__total-price'>Итого - {totalPrice.toString()} ₽</p>
           <button className='total__send btn btn_green'>Оформить заказ</button>
         </div>
       </div>

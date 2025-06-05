@@ -3,20 +3,20 @@ import axios from "axios";
 
 
 
-type ItemBook = {
+export type ItemBook = {
     id: number
     imageUrl: string
     title: string
     author: string
     //description:string
-    //price:number
+    price:number
     sale?:number
     //tab?:string
     //slider?:boolean
-   //category:string
+   category:string
     subCategory:string
 }
-type ItemState = {
+type ItemSliceState = {
     status: 'loading' | 'success' | 'error'
     books: ItemBook[]
     menu: string[]
@@ -24,7 +24,7 @@ type ItemState = {
     wishItems:ItemBook[]
 }
 
-const initialState:ItemState = {
+const initialState:ItemSliceState = {
     status: 'loading', // loading | success | error
     books: [],
     menu: [],

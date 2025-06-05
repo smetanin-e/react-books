@@ -6,12 +6,13 @@ import { changeCategory, isItSubCategory } from '../../redux/slices/categorySlic
 import AsidePreLoading from './AsidePreLoading';
 import { Link } from 'react-router-dom';
 import { fetchBooks } from '../../redux/slices/itemSlice';
+import { RootState, useAppDispatch } from '../../redux/store';
 
 const Aside = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { books, status } = useSelector((state) => state.books);
-  const activeCategory = useSelector((state) => state.category.curentCategory);
+  const { books, status } = useSelector((state: RootState) => state.books);
+  const activeCategory = useSelector((state: RootState) => state.category.curentCategory);
   const getBooks = async () => {
     dispatch(fetchBooks());
   };
@@ -21,17 +22,29 @@ const Aside = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const setCategoryActive = (item) => {
+  const setCategoryActive = (item: string) => {
     dispatch(changeCategory(item));
   };
-  const setIsItSubCategory = (value) => {
+  const setIsItSubCategory = (value: boolean) => {
     dispatch(isItSubCategory(value));
   };
 
   //создаем функцию, которая принимает в качестве аргументов массив объектов с книгами,
   //название категории и название подкатегории
-  const categoriesFromDataBase = (arr, cat, subCat) => {
-    let result = { ВСЕ: [] };
+  type Book = {
+    [key: string]: any;
+    category: string;
+    subCategory: string;
+  };
+  type CategoryResult = {
+    [key: string]: string[];
+  };
+  const categoriesFromDataBase = (
+    arr: Book[],
+    cat: keyof Book,
+    subCat: keyof Book,
+  ): CategoryResult => {
+    let result: CategoryResult = { ВСЕ: [] };
 
     //создаем объект, свойствами которого будут названия категорий. Значения свойств пустой массив
     const categoryKeys = arr
