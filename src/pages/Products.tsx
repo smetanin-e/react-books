@@ -1,6 +1,6 @@
 import React from 'react';
 import Aside from '../components/Aside';
-import Items from '../components/Items';
+import Items from '../components/Items/Index';
 
 import { useSelector } from 'react-redux';
 import Pagination from '../components/Pagination';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Items from '../components/Items';
+import Items from '../components/Items/Index';
 import { RootState } from '../redux/store';
 
 const Wish = () => {
