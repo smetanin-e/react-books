@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { changeCategory, isItSubCategory } from '../../redux/slices/categorySlice';
 import { RootState, useAppDispatch } from '../../redux/store';
-function MenuHeader() {
+const MenuHeader = React.memo(() => {
   const dispatch = useAppDispatch();
   const menu = useSelector((state: RootState) => state.books.menu);
 
@@ -34,6 +34,6 @@ function MenuHeader() {
       </div>
     </nav>
   );
-}
+});
 
 export default MenuHeader;

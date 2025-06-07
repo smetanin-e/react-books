@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { changeCategory, isItSubCategory } from '../../redux/slices/categorySlice';
 
 import AsidePreLoading from './AsidePreLoading';
@@ -9,6 +9,7 @@ import { fetchBooks } from '../../redux/slices/itemSlice';
 import { RootState, useAppDispatch } from '../../redux/store';
 
 const Aside = () => {
+  console.log('render Aside');
   const dispatch = useAppDispatch();
 
   const { books, status } = useSelector((state: RootState) => state.books);
@@ -19,6 +20,7 @@ const Aside = () => {
 
   React.useEffect(() => {
     getBooks();
+    console.log('first render Aside');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

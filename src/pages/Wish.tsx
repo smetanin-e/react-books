@@ -1,9 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Items from '../components/Items/Index';
+
 import { RootState } from '../redux/store';
+import Items from '../components/Items/';
+import { log } from 'node:console';
 
 const Wish = () => {
+  console.log('render Wish');
+
   const wishItems = useSelector((state: RootState) => state.books.wishItems);
   return (
     <div>

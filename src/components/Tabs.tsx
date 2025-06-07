@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Items from './Items/Index';
+import Items from './Items/';
 import Pagination from './Pagination';
 //import TabsPreLoading from './TabsPreLoading';
 import { useSelector } from 'react-redux';
