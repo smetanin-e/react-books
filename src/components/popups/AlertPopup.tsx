@@ -1,11 +1,15 @@
 import React from 'react';
 import styles from './alertPopup.module.scss';
-import { useDispatch } from 'react-redux';
 import { clearCart } from '../../redux/slices/cartSlice';
 import Button from '../Button';
+import { useAppDispatch } from '../../redux/store';
 
-function AlertPopup({ setPopup }) {
-  const dispatch = useDispatch();
+type AlertPopupProps = {
+  setPopup: (value: boolean) => void;
+};
+
+const AlertPopup = ({ setPopup }: AlertPopupProps) => {
+  const dispatch = useAppDispatch();
   const onClearCart = () => {
     dispatch(clearCart());
     setPopup(false);
@@ -35,6 +39,6 @@ function AlertPopup({ setPopup }) {
       </div>
     </div>
   );
-}
+};
 
 export default AlertPopup;

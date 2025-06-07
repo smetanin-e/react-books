@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Items from '../Items';
-import Pagination from '../Pagination';
+import Items from './Items';
+import Pagination from './Pagination';
 //import TabsPreLoading from './TabsPreLoading';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { RootState } from '../redux/store';
 function Tabs() {
   //Список табов
   const tabLinks = ['Бестселлеры', 'Новинки', 'Подержанные ', 'Спец. предложение'];

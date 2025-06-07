@@ -1,14 +1,19 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { ItemBook } from "./itemSlice"
+import axios from "axios"
 
 type CategorySliceState = {
     curentCategory: string
     itSubCategory: boolean
+    //products:ItemBook[]
 }
 
 const initialState:CategorySliceState = {
     curentCategory: '',
-    itSubCategory: false
+    itSubCategory: false,
+   // products: []
 }
+
 
 const categorySlice = createSlice({
     name: 'category',

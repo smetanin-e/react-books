@@ -1,12 +1,12 @@
-import { useDispatch } from 'react-redux';
 import { changeCategory } from '../redux/slices/categorySlice';
 import Banner from '../components/Banner';
 import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
+import { useAppDispatch } from '../redux/store';
 
 function Home() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   //При переходе на главную страницу очищаем активную категорию
   dispatch(changeCategory(''));
 

@@ -5,7 +5,7 @@ import Button from '../components/Button';
 import AlertPopup from '../components/popups/AlertPopup';
 import { RootState, useAppDispatch } from '../redux/store';
 
-function Cart() {
+const Cart = () => {
   const dispatch = useAppDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const totalCount = useSelector((state: RootState) => state.cart.totalCount);
@@ -73,14 +73,14 @@ function Cart() {
                   </Button>
 
                   <span>{obj.count}</span>
-                  <button
-                    onClick={() => {
+                  <Button
+                    handleClick={() => {
                       countPlus(obj);
                     }}
-                    className='counter-cart__button btn btn_green'
+                    styleClasses={'counter-cart__button btn btn_green'}
                   >
                     +
-                  </button>
+                  </Button>
                 </div>
               </div>
               <div className='item-cart__price'>
@@ -110,6 +110,6 @@ function Cart() {
       </div>
     </>
   );
-}
+};
 
 export default Cart;

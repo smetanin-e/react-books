@@ -22,6 +22,7 @@ type ItemSliceState = {
     menu: string[]
     banner:ItemBook | null
     wishItems:ItemBook[]
+    
 }
 
 const initialState:ItemSliceState = {
@@ -29,12 +30,15 @@ const initialState:ItemSliceState = {
     books: [],
     menu: [],
     banner: null,
-    wishItems: []
+    wishItems: [],
+    
 }
 export const fetchBooks = createAsyncThunk<ItemBook[],void>('book/fetchBooksStatus', async () => {
     const {data} = await axios.get<ItemBook[]>(`https://815c3fb7d56c4537.mokky.dev/books`)
     return data
 })
+
+
 const itemSlice = createSlice({
     name: 'item',
     initialState,
