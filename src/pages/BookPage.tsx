@@ -1,24 +1,19 @@
 import React from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { changeCategory, isItSubCategory } from '../redux/slices/categorySlice';
+import { useSelector } from 'react-redux';
 import { onAddToCart } from '../redux/slices/cartSlice';
 import { Link, useParams } from 'react-router-dom';
 import IconWish from '../components/IconWish';
 import Button from '../components/Button';
 import { RootState, useAppDispatch } from '../redux/store';
 import { ItemBook } from '../redux/slices/itemSlice';
+import useCategoryActions from '../utils/useCategoryActions';
 
 function BookPage() {
   const dispatch = useAppDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const setCategoryActive = (item: string) => {
-    dispatch(changeCategory(item));
-  };
-  const setIsItSubCategory = (value: boolean) => {
-    dispatch(isItSubCategory(value));
-  };
+  const { setCategoryActive, setIsItSubCategory } = useCategoryActions();
 
   const addToCart = (obj: ItemBook) => {
     const item = {

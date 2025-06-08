@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Items from './Items/';
+import Items from './Items';
 import Pagination from './Pagination';
 //import TabsPreLoading from './TabsPreLoading';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-function Tabs() {
+const Tabs = () => {
   //Список табов
   const tabLinks = ['Бестселлеры', 'Новинки', 'Подержанные ', 'Спец. предложение'];
 
@@ -57,6 +57,6 @@ function Tabs() {
       </div>
     </div>
   );
-}
+};
 
 export default Tabs;

@@ -4,9 +4,8 @@ import { useSelector } from 'react-redux';
 import BannerPreLoading from './BannerPreLoading';
 import { RootState } from '../../redux/store';
 
-function Banner() {
+const Banner = () => {
   const { banner, status } = useSelector((state: RootState) => state.books);
-
   return (
     <>
       {status === 'loading' || banner === null ? (
@@ -29,6 +28,6 @@ function Banner() {
       )}
     </>
   );
-}
+};
 
 export default Banner;

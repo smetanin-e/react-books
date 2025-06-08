@@ -1,14 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { changeCategory } from '../redux/slices/categorySlice';
 import Banner from '../components/Banner';
 import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
 import { useAppDispatch } from '../redux/store';
+import React from 'react';
 
-function Home() {
+const Home = () => {
   const dispatch = useAppDispatch();
   //При переходе на главную страницу очищаем активную категорию
-  dispatch(changeCategory(''));
+  React.useEffect(() => {
+    dispatch(changeCategory(''));
+  }, []);
 
   return (
     <>
@@ -23,6 +27,6 @@ function Home() {
       </div>
     </>
   );
-}
+};
 
 export default Home;
