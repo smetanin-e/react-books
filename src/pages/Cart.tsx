@@ -12,7 +12,7 @@ const Cart = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const totalCount = useSelector((state: RootState) => state.cart.totalCount);
   const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
-  console.log(cartItems.length);
+
   const countPlus = (count: { id: number }) => {
     dispatch(increment(count));
   };

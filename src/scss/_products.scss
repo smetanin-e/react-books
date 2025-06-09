@@ -51,7 +51,9 @@
         padding-block: 10px;
     }
     &__button {
-
+        @media(min-width: 860px) {
+            display: none;
+        }
     }
 
     &__item {
@@ -112,7 +114,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 26px 30px;
-    
+    @media(max-width: 860px){
+            gap: 15px 20px;
+            
+        }
     
     // .products__item
     &__item {
@@ -126,6 +131,10 @@
       cursor: pointer;
       transition: all 0.2s ease-in-out;
       border-radius: 8px;
+      @media(max-width: 860px){
+            width: 110px;
+            
+        }
       &:hover {
         box-shadow: 1px 1px 8px 8px rgba(119, 119, 119, 0.2);
         transform: translateY(-2px);
@@ -140,9 +149,7 @@
   }
 .item-product {
     position: relative;
-    
-    //display: flex;
-    // .item-product__sale
+
     &__sale {
       position: absolute;
       right: -10px;
@@ -178,6 +185,11 @@
         width: 120px;
         height: 180px;
         object-fit: cover;
+        object-position: center;
+        @media(max-width: 860px){
+            width: 100px;
+            height: 160px;
+        }
       }
     }
   

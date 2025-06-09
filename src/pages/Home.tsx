@@ -26,12 +26,12 @@ const Home = () => {
         <Slider />
         {!isMobile && <Banner />}
       </div>
+      {isMobile && <Banner />}
       <div className='page__products products-page'>
         <Aside />
 
         <Tabs />
       </div>
-      {isMobile && <Banner />}
     </>
   );
 };
