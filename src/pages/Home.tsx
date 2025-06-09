@@ -27,7 +27,7 @@ const Home = () => {
         {!isMobile && <Banner />}
       </div>
       <div className='page__products products-page'>
-        {/* <Aside /> */}
+        <Aside />
 
         <Tabs />
       </div>

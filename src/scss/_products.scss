@@ -4,6 +4,9 @@
     display: flex;
     gap: 10px;
     margin-block-end: 50px;
+    @media(max-width:860px){
+        flex-direction: column;
+    }
     &__container {
         
     }
@@ -16,6 +19,9 @@
 
     &__categories {
        flex: 0 0 188px; 
+       @media(max-width:860px){
+        flex: 1 1 auto;
+    }
     }
 
     &__books {
@@ -27,16 +33,25 @@
         border: 1px solid #D6D6D6;
         margin-top: -1px;
     }
+    
 }
 .categories {
+
     border: 1px solid #D6D6D6;
-    
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding-inline-end: 25px;
+    }
     &__title {
         font-size: 24px;
         font-weight: 300;
         line-height: 1.25;
         padding-inline: 20px;
         padding-block: 10px;
+    }
+    &__button {
+
     }
 
     &__item {

@@ -24,11 +24,16 @@ const Aside = () => {
     getBooks();
   }, []);
 
+  const [open, setOpen] = React.useState(true);
+  const toggleOpenCategories = () => {
+    setOpen(!open);
+  };
   const { setCategoryActive, setIsItSubCategory } = useCategoryActions();
 
   const handleCategoryClick = React.useCallback((value: string, isSubCategory: boolean) => {
     setCategoryActive(value);
     setIsItSubCategory(isSubCategory);
+    setOpen(!false);
   }, []);
   const categories = categoriesFromDataBase(books, 'category', 'subCategory');
   const categoryTitles = Object.keys(categories);
@@ -39,40 +44,50 @@ const Aside = () => {
         <AsidePreLoading />
       ) : (
         <>
-          <h2 className='categories__title'>Категории</h2>
-          {categoryTitles.map((value, index) => (
-            <div key={value + index} className='categories__item item-category'>
-              <Link
-                to={'/products'}
-                onClick={() => handleCategoryClick(value, false)}
-                className={
-                  activeCategory === value
-                    ? 'item-category__title nav-link nav-link-active'
-                    : 'item-category__title nav-link'
-                }
-              >
-                {value}
-              </Link>
+          <div className='categories__header'>
+            <h2 className='categories__title'>Категории</h2>
+            <button onClick={toggleOpenCategories} className='categories__button'>
+              =
+            </button>
+          </div>
 
-              <ul className='item-category__list'>
-                {categories[value].length > 0 &&
-                  categories[value].map((subCategory, index) => (
-                    <li
-                      key={subCategory + index}
-                      className={
-                        activeCategory === subCategory
-                          ? 'item-category__subcategory nav-link nav-link-active'
-                          : 'item-category__subcategory nav-link'
-                      }
-                    >
-                      <Link to={'/products'} onClick={() => handleCategoryClick(subCategory, true)}>
-                        {subCategory}
-                      </Link>
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          ))}
+          {open &&
+            categoryTitles.map((value, index) => (
+              <div key={value + index} className='categories__item item-category'>
+                <Link
+                  to={'/products'}
+                  onClick={() => handleCategoryClick(value, false)}
+                  className={
+                    activeCategory === value
+                      ? 'item-category__title nav-link nav-link-active'
+                      : 'item-category__title nav-link'
+                  }
+                >
+                  {value}
+                </Link>
+
+                <ul className='item-category__list'>
+                  {categories[value].length > 0 &&
+                    categories[value].map((subCategory, index) => (
+                      <li
+                        key={subCategory + index}
+                        className={
+                          activeCategory === subCategory
+                            ? 'item-category__subcategory nav-link nav-link-active'
+                            : 'item-category__subcategory nav-link'
+                        }
+                      >
+                        <Link
+                          to={'/products'}
+                          onClick={() => handleCategoryClick(subCategory, true)}
+                        >
+                          {subCategory}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            ))}
         </>
       )}
     </aside>
