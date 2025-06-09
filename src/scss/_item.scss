@@ -44,25 +44,30 @@
     border: 1px solid #dedede;
     border-radius: 4px;
     // .book-info__instock
-  
+   @media(max-width:860px){
+    flex-direction: column;
+    padding: 15px;
+    
+   }
     &__wish {
       
       position: absolute;
       right: 10px;
       top: 10px;
-      
+      z-index: 1;
       cursor: pointer;
+      background: #ffffff;
+      display: flex;
+        align-items: center;
+        justify-content: center;
+      border-radius: 50%;
       &_main {
-        background: #ffffff;
+       
         left: -10px;
         top: -10px;
         width: 27px;
         height: 27px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-      border-radius: 50%;
+       
       }
       svg {
         
@@ -82,12 +87,25 @@
     position: relative;
       flex: 0 0 250px;
       height: 391px;
+      @media(max-width:860px){
+         width: 300px;
+         padding-block-end: 450px;
+         margin: 0 auto;
+   }
+   @media(max-width:420px){
+         width: 250px;
+         padding-block-end: 400px;
+         margin: 0 auto;
+   }
     }
   
     // .book-info__body
   
     &__body {
       margin-left: 43px;
+      @media(max-width:860px){
+         margin-left: 0;
+   }
     }
   }
   .body-book-info {
@@ -98,6 +116,11 @@
       font-weight: 300;
       color: #595959;
       margin-bottom: 25px;
+      @media(max-width:860px){
+         text-align: center;
+         padding-block-start: 20px;
+         margin-block-end: 15px;
+        }
     }
   
     // .body-book-info__text
@@ -107,6 +130,9 @@
       color: #7e7e7e;
       margin-bottom: 25px;
       line-height: 1.63;
+      @media(max-width:860px){
+         text-align: justify;
+        }
     }
   
     // .body-book-info__price
@@ -126,6 +152,9 @@
       justify-content: space-between;
       padding: 0 6px 30px 6px;
       border-bottom: 1px solid #dedede;
+      gap: 15px;
+      flex-wrap: wrap;
+      
     }
   
     // .price-book-info__item
@@ -143,6 +172,10 @@
         font-weight: 700;
         color: #e45858;
       }
+        @media(max-width: 600px){
+        
+        font-size: 28px;
+      }
     }
   
     // .price-book-info__sale-info
@@ -156,6 +189,7 @@
     // .price-book-info__button
   
     &__button {
+       // max-width: 270px;
       cursor: pointer;
       display: flex;
       font-family: 'Helvetica';
@@ -163,6 +197,11 @@
       //color: #fff;
       font-size: 24px;
       padding: 12px 35px;
+      
+      @media(max-width: 600px){
+        font-size: 18px;
+        padding: 12px 25px;
+      }
       //border-radius: 4px;
     }
   

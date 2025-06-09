@@ -17,12 +17,19 @@
     border-radius: 10px;
     background: #fff;
     padding: 30px;
+    @media(max-width: 860px) {
+        width: 320px;
+        height: 180px;
+    }
 }
 .title {
     font-size: 32px;
     font-weight: 700;
     text-align: center;
     padding-bottom: 50px;
+    @media(max-width: 860px) {
+        font-size: 18px;
+    }
 }
 .buttons {
     display: flex;
@@ -33,6 +40,9 @@
         width: 150px;
         padding-block: 4px;
         line-height: 1;
+        @media(max-width: 860px) {
+        font-size: 18px;
+    }
     }
     
 }

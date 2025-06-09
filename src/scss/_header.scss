@@ -116,19 +116,17 @@
                 fill: #6b9e55;
             }
         }
+        
+    }
+    &__item-name {
         @media(max-width: 860px){
-            span {
+           
                 display: none;
-            }
+            
         }
     }
 }
-.cart {
-}
-.wish {
-}
-.account {
-}
+
 
 .nav-header {
     border-top: 1px solid #CECECE;
@@ -172,4 +170,8 @@
    &_wish {
     right: 6px;
    }
+   @media(max-width: 860px){
+       right: -10px;
+       top: 10px;     
+    }
 }

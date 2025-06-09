@@ -27,7 +27,8 @@
         flex: 0 0 269px;
         width: 269px;
          @media(max-width: 860px) {
-            margin: 0 auto;
+            width: 100%;
+            min-width: 269px;
         }
     }
 }
