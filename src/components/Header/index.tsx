@@ -1,7 +1,7 @@
 import logo from '../../assets/img/logo.png';
 
 import React from 'react';
-
+import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 
 import Search from './Search';
@@ -10,6 +10,7 @@ import Cart from './CartHeader';
 import MenuHeader from './MenuHeader';
 
 function Header() {
+  const isMobile = useMediaQuery({ query: '(max-width: 860px)' });
   return (
     <header className='header'>
       <div className='header__body body-header'>
@@ -19,8 +20,7 @@ function Header() {
               <img className='image' src={logo} alt='logo' />
             </div>
           </Link>
-
-          {/* <Search /> */}
+          {!isMobile && <Search />}
 
           <div className='body-header__items items-header'>
             <Cart />

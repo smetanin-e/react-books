@@ -38,6 +38,10 @@
         flex-grow: 1;
         padding-inline: 70px;
         display: flex;
+        @media(max-width: 860px){
+            padding-inline: 0px;
+            margin-block-end: 15px;
+        }
     }
 
     &__items {
@@ -48,6 +52,10 @@
     position: relative;
     display: grid;
     grid-template-columns: 1fr 125px;
+    height: 35px;
+    @media(max-width: 860px){
+          grid-template-columns: 1fr 80px;
+        }
     // .search-header__input
     &__input {
       border: 4px solid #79b260;
@@ -78,6 +86,9 @@
         left: 5px;
         transform: translate(0, -50%);
         fill: #fff;
+        @media(max-width: 860px){
+          display: none;
+        }
       }
       &:hover {
         box-shadow: inset 1px 1px 10px #578f57;

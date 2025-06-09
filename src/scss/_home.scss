@@ -2,6 +2,9 @@
 .page {
    
     padding-top: 140px;
+    @media(max-width:860px){
+        padding-top: 123px;
+    }
     &__container {
         
     }
@@ -23,13 +26,15 @@
     &__banner {
         flex: 0 0 269px;
         width: 269px;
+         @media(max-width: 860px) {
+            margin: 0 auto;
+        }
     }
 }
 .slider-page {
     &__wrapper {
         height: 100%;
         position: relative;
-        
     }
 
     &__item {
@@ -40,18 +45,18 @@
 .slide-item {
     
     &__content {
-        position: relative;
         min-height: 230px;
-
-        //text-align: center;
         color: #fff;
-        padding-block-start: 130px;
-        padding-block-end: 75px;
-        //padding-inline-start: 160px;
-       // padding-inline-end: 25px;
-
         display: flex;
-        justify-content: end;
+        justify-content: space-between;
+
+        @media(max-width: 730px) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    &__images {
+        position: relative;
     }
     &__bg {
         position: absolute;
@@ -60,6 +65,17 @@
         top: 0;
         left: 0;
         z-index: -1;
+        &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: 0.5;
+            z-index: 1;
+        }
     }
 
     &__book {
@@ -68,6 +84,12 @@
         position: absolute;
         left: 60px;
         top: 40px;
+        @media(max-width: 730px) {
+            width: 75px;
+            height: 114px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
     }
 
     &__audio {
@@ -85,26 +107,43 @@
             height: 108px;
             background: url('../assets/img/slider/disk_after.png') 0 0 no-repeat;
         }
+       
+        @media(max-width: 1000px) {
+           opacity: 0;
+        }
+        @media(max-width: 860px) {
+           opacity: 1;
+        }
+        @media(max-width: 730px) {
+           display: none;
+        }
     }
     &__text {
         position: relative;
         text-align: center;
-        padding-inline-start: 80px;
-        padding-inline-end: 80px;
+        margin-inline-end: 45px;
+         padding-block-start: 100px;
+        padding-block-end: 75px;
+        max-width: 350px;
+        @media(max-width: 730px) {
+            padding-block-start: 160px;
+            margin-inline: 0;
+            padding-inline: 5px;
+        }
     }
 
     &__title {
-        font-size: 47px;
+        font-size: 30px;
         font-weight: bold;
     }
 
     &__subtitle {
-        font-size: 25px;
+        font-size: 16px;
         line-height: 1.12;
     }
 
     &__author {
-        font-size: 21px;
+        font-size: 22px;
         line-height: 1.33;
     }
 }
@@ -131,6 +170,9 @@
         margin-left: 3px;
       }
     }
+    @media(max-width: 860px) {
+           display: none;
+        }
   }
   .-prev {
     left: 12px;
@@ -212,10 +254,12 @@
 /*=======================================================================*/
 
 .tabs-page {
-
+    overflow: hidden;
     &__list {
         display: flex;
         overflow: auto;
+        white-space: nowrap;
+       
     }
 
     &__link {

@@ -20,19 +20,36 @@ function Slider() {
       <div className='slider-page__wrapper'>
         <div className='slider-page__item slide-item'>
           <div className='slide-item__bg'>
-            <img className='image' src={bgSlider} alt='image1' />
+            <img
+              className='image'
+              src='https://rust.litnet.com/uploads/covers/0/1749455884_20.jpg'
+              alt='image1'
+            />
           </div>
           <div className='slide-item__content'>
-            <div className='slide-item__book'>
-              <img className='image' src={bookImg} alt='image2' />
+            <div className='slide-item__images'>
+              <div className='slide-item__book'>
+                <img
+                  className='image'
+                  src='https://rust.litnet.com/uploads/covers/0/1749455884_20.jpg'
+                  alt='image2'
+                />
+              </div>
+              <div className='slide-item__audio'>
+                <img
+                  className='image'
+                  src='https://rust.litnet.com/uploads/covers/0/1749455884_20.jpg'
+                  alt='image3'
+                />
+              </div>
             </div>
-            <div className='slide-item__audio'>
-              <img className='image' src={slideDisk} alt='image3' />
-            </div>
+
             <div className='slide-item__text'>
-              <h2 className='slide-item__title'>A Wanted Man</h2>
-              <p className='slide-item__subtitle'>(Jack Reacher #17)</p>
-              <p className='slide-item__author'>By Lee Child</p>
+              <h2 className='slide-item__title'>Сначала суп, потом десерт</h2>
+              <p className='slide-item__subtitle'>
+                Мария Кардакова, нутрициолог и мама двоих детей...
+              </p>
+              <p className='slide-item__author'>Мария Кардакова</p>
             </div>
           </div>
         </div>

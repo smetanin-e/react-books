@@ -43,9 +43,9 @@ const Cart = () => {
           <div className='cart'>
             <div className='cart__header'>
               <h1 className='cart__title'>
-                Корзина,
+                Корзина:
                 <span>
-                  {totalCount}
+                  {` ${totalCount}`}
                   {oneItem ? ' товар' : someItems ? ' товара' : ' товаров'}
                 </span>
               </h1>

@@ -6,8 +6,12 @@ import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
 import { useAppDispatch } from '../redux/store';
 import React from 'react';
+import Search from '../components/Header/Search';
+
+import { useMediaQuery } from 'react-responsive';
 
 const Home = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 860px)' });
   const dispatch = useAppDispatch();
   //При переходе на главную страницу очищаем активную категорию
   React.useEffect(() => {
@@ -16,15 +20,18 @@ const Home = () => {
 
   return (
     <>
+      {isMobile && <Search />}
+
       <div className='page__banner baner-page'>
         <Slider />
-        <Banner />
+        {!isMobile && <Banner />}
       </div>
       <div className='page__products products-page'>
-        <Aside />
+        {/* <Aside /> */}
 
         <Tabs />
       </div>
+      {isMobile && <Banner />}
     </>
   );
 };
