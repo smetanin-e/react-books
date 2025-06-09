@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback } from 'react';
+import React from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -25,7 +25,8 @@ const Aside = () => {
   }, []);
 
   const { setCategoryActive, setIsItSubCategory } = useCategoryActions();
-  const handleCategoryClick = useCallback((value: string, isSubCategory: boolean) => {
+
+  const handleCategoryClick = React.useCallback((value: string, isSubCategory: boolean) => {
     setCategoryActive(value);
     setIsItSubCategory(isSubCategory);
   }, []);
