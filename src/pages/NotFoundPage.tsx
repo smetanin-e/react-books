@@ -1,12 +1,10 @@
-import { Link } from 'react-router-dom';
+import Empty from '../components/Empty';
+import errorImage from '../assets/img/404.jpg';
 
 const NotFoundPage: React.FC = () => {
   return (
     <>
-      <h1 className='title'>Страница не найдена</h1>
-      <Link to='/'>
-        <button className='btn btn_black'>на главную</button>
-      </Link>
+      <Empty image={errorImage} />
     </>
   );
 };

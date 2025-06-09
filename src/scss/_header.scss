@@ -5,6 +5,8 @@
     background: #fff;
     &__body {
         background: linear-gradient(to top, #ebebeb, #fefefe);
+        
+        
     }
 
     &__nav {
@@ -15,8 +17,8 @@
     padding-block: 15px;
 
     &__container {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
+        display: flex;
+       // grid-template-columns: auto 1fr auto;
         justify-content: space-between;
         align-items: center;
         gap: 15px;
@@ -33,6 +35,7 @@
     }
 
     &__search {
+        flex-grow: 1;
         padding-inline: 70px;
         display: flex;
     }

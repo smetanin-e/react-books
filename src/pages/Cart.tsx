@@ -4,7 +4,8 @@ import { increment, decrement, removeCartItem } from '../redux/slices/cartSlice'
 import Button from '../components/Button';
 import AlertPopup from '../components/popups/AlertPopup';
 import { RootState, useAppDispatch } from '../redux/store';
-import CartEmpty from '../components/Cart/CartEmpty';
+import Empty from '../components/Empty';
+import emptyCartImage from '../assets/img/empty-cart.webp';
 
 const Cart = () => {
   const dispatch = useAppDispatch();
@@ -34,7 +35,7 @@ const Cart = () => {
   return (
     <>
       {cartItems.length === 0 ? (
-        <CartEmpty />
+        <Empty title={'В вашей корзине нет товаров'} image={emptyCartImage} />
       ) : (
         <>
           {popup && <AlertPopup setPopup={setPopup} />}

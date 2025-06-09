@@ -11,7 +11,7 @@ const Book = (obj: ItemBook) => {
           {obj.sale ? (
             <div className='item-product__sale'>
               <p>{obj.sale}%</p>
-              <span>off</span>
+              <span>скидка</span>
             </div>
           ) : null}
 

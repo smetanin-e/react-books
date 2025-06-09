@@ -20,7 +20,7 @@ function Header() {
             </div>
           </Link>
 
-          <Search />
+          {/* <Search /> */}
 
           <div className='body-header__items items-header'>
             <Cart />

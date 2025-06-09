@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 
 import { RootState } from '../redux/store';
 import Items from '../components/Items/';
-import { log } from 'node:console';
+import Empty from '../components/Empty';
+import emptyWish from '../assets/img/empty-wish.png';
 
 const Wish = () => {
   console.log('render Wish');
@@ -11,8 +12,14 @@ const Wish = () => {
   const wishItems = useSelector((state: RootState) => state.books.wishItems);
   return (
     <div>
-      <h1 className='body-book-info__title'>Твой список желаемых книг:</h1>
-      {wishItems.length > 0 && <Items items={wishItems} />}
+      {wishItems.length > 0 ? (
+        <>
+          <h1 className='title'>Твой список желаемых книг:</h1>
+          <Items items={wishItems} />
+        </>
+      ) : (
+        <Empty image={emptyWish} title='Список желаемых книг пуст' />
+      )}
     </div>
   );
 };
