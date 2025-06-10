@@ -12,7 +12,7 @@ export type ItemBook = {
     price:number
     sale?:number
     tab?:string
-    //slider?:boolean
+    slider?:boolean
    category:string
     subCategory:string
 }
