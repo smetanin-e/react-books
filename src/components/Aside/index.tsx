@@ -11,6 +11,7 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import useCategoryActions from '../../utils/useCategoryActions';
 import { categoriesFromDataBase } from '../../utils/categoriesFromDataBase';
 import { useMediaQuery } from 'react-responsive';
+import { log } from 'console';
 
 const Aside = () => {
   const dispatch = useAppDispatch();
@@ -33,19 +34,26 @@ const Aside = () => {
   };
 
   const { setCategoryActive, setIsItSubCategory } = useCategoryActions();
+
+  const handleCategoryClick = React.useCallback(
+    (value: string, isSubCategory: boolean) => {
+      setCategoryActive(value);
+      setIsItSubCategory(isSubCategory);
+      if (isMobile) {
+        setOpen(false);
+      } else {
+        setOpen(true);
+      }
+    },
+    [isMobile],
+  );
   React.useEffect(() => {
-    if (!isMobile) {
-      setOpen(true);
-    } else {
+    if (isMobile) {
       setOpen(false);
+    } else {
+      setOpen(true);
     }
   }, [isMobile]);
-
-  const handleCategoryClick = React.useCallback((value: string, isSubCategory: boolean) => {
-    setCategoryActive(value);
-    setIsItSubCategory(isSubCategory);
-    setOpen(false);
-  }, []);
 
   const categories = categoriesFromDataBase(books, 'category', 'subCategory');
   const categoryTitles = Object.keys(categories);
