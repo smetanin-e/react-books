@@ -8,6 +8,7 @@ import { store } from './redux/store';
 import { Provider } from 'react-redux';
 
 import { Home, Wish, BookPage, Products, NotFoundPage, Cart } from './pages';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <div className='page__container'>
             <Routes>
               <Route path='/' element={<Home />} />
+              <Route path='/search' element={<SearchPage />} />
               <Route path='/cart' element={<Cart />} />
               <Route path='/wish' element={<Wish />} />
               <Route path='/bookPage/:id' element={<BookPage />} />

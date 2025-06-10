@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import Pagination from '../components/Pagination';
 import { RootState, useAppDispatch } from '../redux/store';
 import { fetchCategoryBooks } from '../redux/slices/categorySlice';
+import Search from '../components/Header/Search';
 
 function Products() {
   const dispatch = useAppDispatch();
@@ -36,22 +37,24 @@ function Products() {
   const paginate = (PageNumber: number) => setCurrentPage(PageNumber);
 
   return (
-    <div className='page__products products-page'>
-      <Aside />
+    <>
+      <div className='page__products products-page'>
+        <Aside />
 
-      <div className='products-page__books '>
-        <div className='products-page__items'>
-          <h1 className='products-page__title'>{activeCategory}</h1>
-          <Items items={currentItems} />
-          <Pagination
-            postsPerPage={postsPerPage}
-            totalPosts={products.length}
-            paginate={paginate}
-            currentPage={currentPage}
-          />
+        <div className='products-page__books '>
+          <div className='products-page__items'>
+            <h1 className='products-page__title'>{activeCategory}</h1>
+            <Items items={currentItems} />
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={products.length}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

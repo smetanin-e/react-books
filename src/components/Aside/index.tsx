@@ -11,7 +11,6 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import useCategoryActions from '../../utils/useCategoryActions';
 import { categoriesFromDataBase } from '../../utils/categoriesFromDataBase';
 import { useMediaQuery } from 'react-responsive';
-import { log } from 'console';
 
 const Aside = () => {
   const dispatch = useAppDispatch();

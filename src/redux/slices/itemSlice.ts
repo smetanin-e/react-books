@@ -22,7 +22,7 @@ type ItemSliceState = {
     menu: string[]
     banner:ItemBook | null
     wishItems:ItemBook[]
-    
+    searchValue: string
 }
 
 const initialState:ItemSliceState = {
@@ -31,7 +31,7 @@ const initialState:ItemSliceState = {
     menu: [],
     banner: null,
     wishItems: [],
-    
+    searchValue: ''
 }
 export const fetchBooks = createAsyncThunk<ItemBook[],void>('book/fetchBooksStatus', async () => {
     const {data} = await axios.get<ItemBook[]>(`https://815c3fb7d56c4537.mokky.dev/books`)
@@ -49,6 +49,9 @@ const itemSlice = createSlice({
         onRemoveWish(state,action:PayloadAction<{id:number}>) {
             state.wishItems = state.wishItems.filter(obj => obj.id !== action.payload.id)
         
+        },
+        search(state,action:PayloadAction<string>) {
+            state.searchValue = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -84,5 +87,5 @@ const itemSlice = createSlice({
     }
 })
 
-export const {addWish, onRemoveWish} = itemSlice.actions
+export const {addWish, onRemoveWish,search} = itemSlice.actions
 export default itemSlice.reducer

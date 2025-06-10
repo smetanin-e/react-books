@@ -1,13 +1,24 @@
 import React from 'react';
+import { useAppDispatch } from '../../redux/store';
+
+import { search } from '../../redux/slices/itemSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [searchInputText, setSearchInputText] = React.useState<string>('');
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInputText(e.target.value);
   };
   const onSearchButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(searchInputText);
     e.preventDefault();
+    if (searchInputText !== '') {
+      navigate('/search');
+      dispatch(search(searchInputText));
+
+      setSearchInputText('');
+    }
   };
 
   return (

@@ -4,10 +4,8 @@ import Items from './Items';
 import Pagination from './Pagination';
 //import TabsPreLoading from './TabsPreLoading';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../redux/store';
-import { fetchBooks } from '../redux/slices/itemSlice';
+import { RootState } from '../redux/store';
 const Tabs = () => {
-  const dispatch = useAppDispatch();
   //Список табов
   const tabLinks = ['Бестселлеры', 'Новинки', 'Подержанные ', 'Спец. предложение'];
 
@@ -19,14 +17,6 @@ const Tabs = () => {
   const [activeTab, setActiveTab] = React.useState(0);
   const { books } = useSelector((state: RootState) => state.books);
   const tabItems = books.filter((obj) => obj.tab === tabLinks[activeTab]);
-
-  const getBooks = async () => {
-    dispatch(fetchBooks());
-  };
-
-  React.useEffect(() => {
-    getBooks();
-  }, []);
 
   React.useEffect(() => {
     setCurrentPage(1);
