@@ -1,16 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import IconWish from '../components/IconWish';
-import { RootState } from '../redux/store';
 import { ItemBook } from '../redux/slices/itemSlice';
 import Breadcrumds from '../components/Breadcrumds';
 import BookInfoPrice from '../components/BookInfoPrice';
 
 function BookPage() {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
-
   const [book, setBook] = React.useState<ItemBook>();
   const { id } = useParams();
 

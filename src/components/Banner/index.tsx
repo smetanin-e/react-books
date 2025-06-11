@@ -3,8 +3,10 @@ import posterBg from '../../assets/img/baner/poster-bg.png';
 import { useSelector } from 'react-redux';
 import BannerPreLoading from './BannerPreLoading';
 import { RootState } from '../../redux/store';
+import { useNavigate } from 'react-router-dom';
 
 const Banner = () => {
+  const navigate = useNavigate();
   const { banner, status } = useSelector((state: RootState) => state.books);
   return (
     <>
@@ -23,7 +25,12 @@ const Banner = () => {
           <p className='banner__sale'>Сохрани {banner.sale}% сейчас</p>
           <p className='banner__price'>{banner.price} ₽</p>
 
-          <button className='banner__button btn btn_green'>Купить</button>
+          <button
+            onClick={() => navigate(`/bookPage/${banner.id}`)}
+            className='banner__button btn btn_green'
+          >
+            Купить
+          </button>
         </div>
       )}
     </>

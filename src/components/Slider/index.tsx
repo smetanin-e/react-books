@@ -1,12 +1,14 @@
-import arrow from '../assets/img/slider/arrow.png';
+import arrow from '../../assets/img/slider/arrow.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { RootState } from '../../redux/store';
+import { useNavigate } from 'react-router-dom';
 
 const Slider = () => {
+  const navigate = useNavigate();
   const { books } = useSelector((state: RootState) => state.books);
   const slides = books.filter((item) => item.slider === true);
   return (
@@ -24,7 +26,10 @@ const Slider = () => {
         // }}
       >
         {slides.map((item) => (
-          <SwiperSlide className='slider-page__item slide-item'>
+          <SwiperSlide
+            onClick={() => navigate(`/bookPage/${item.id}`)}
+            className='slider-page__item slide-item'
+          >
             <div className='slide-item__bg'>
               <img className='image' src={item.imageUrl} alt='image1' />
             </div>
@@ -40,9 +45,6 @@ const Slider = () => {
 
               <div className='slide-item__text'>
                 <h2 className='slide-item__title'>{item.title}</h2>
-                {/* <p className='slide-item__subtitle'>
-                  Мария Кардакова, нутрициолог и мама двоих детей...
-                </p> */}
                 <p className='slide-item__author'>{item.author}</p>
               </div>
             </div>
