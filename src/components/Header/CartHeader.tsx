@@ -4,7 +4,18 @@ import { Link } from 'react-router-dom';
 import { RootState } from '../../redux/store';
 
 const CartHeader = () => {
-  const totalCount = useSelector((state: RootState) => state.cart.totalCount);
+  const { items, totalCount } = useSelector((state: RootState) => state.cart);
+
+  //   React.useEffect(() => {
+  //     const json = JSON.stringify(items);
+  //     localStorage.setItem('cart', json);
+  //   }, []);
+
+  React.useEffect(() => {
+    const json = JSON.stringify(items);
+    localStorage.setItem('cart', json);
+  }, [items]);
+
   return (
     <Link to={'/cart'}>
       <div className='items-header__item cart'>

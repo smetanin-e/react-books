@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../store"
+import { getCartItemsFromLocalStorage } from "../../utils/getCartItemsFromLocalStorage"
+import { calcTotalCount,  } from "../../utils/calcTotalCount"
+import { calcTotalPrice } from "../../utils/calcTotalPrice"
 
-type CartItem = {
+export type CartItem = {
     id: number
     imageUrl: string
     title: string
@@ -15,11 +18,11 @@ interface CartSliceState {
     totalCount: number
     totalPrice: Number
 }
-
+const {items, totalCount,totalPrice} = getCartItemsFromLocalStorage();
 const initialState:CartSliceState = {
-    items: [],
-    totalCount: 0,
-    totalPrice: 0
+    items,
+    totalCount,
+    totalPrice,
 }
 
 const cartSlice = createSlice({
@@ -29,8 +32,8 @@ const cartSlice = createSlice({
        onAddToCart(state,action:PayloadAction<CartItem>){
         
         state.items.push({...action.payload, count: 1})
-        state.totalCount = state.items.reduce((acc,obj) => acc + (obj.count || 0), 0)
-        state.totalPrice = state.items.reduce((acc,obj) => acc + (obj.count || 0) * obj.price, 0)
+        state.totalCount = calcTotalCount(state.items)
+        state.totalPrice = calcTotalPrice(state.items)
        },
 
        increment(state,action:PayloadAction<{id:number}>){
@@ -39,16 +42,16 @@ const cartSlice = createSlice({
             item.count ++
         }
         
-        state.totalCount = state.items.reduce((acc,obj) => acc + (obj.count || 0), 0)
-        state.totalPrice = state.items.reduce((acc,obj) => acc + (obj.count || 0) * obj.price, 0)
+        state.totalCount = calcTotalCount(state.items)
+        state.totalPrice = calcTotalPrice(state.items)
        },
        decrement: (state,action:PayloadAction<{id:number}>) => {
         const item = state.items.find((obj) => obj.id === action.payload.id)
         if (item?.count) {
             item.count --
         }
-        state.totalCount = state.items.reduce((acc,obj) => acc + (obj.count || 0), 0)
-        state.totalPrice = state.items.reduce((acc,obj) => acc + (obj.count || 0) * obj.price, 0)
+        state.totalCount = calcTotalCount(state.items)
+        state.totalPrice = calcTotalPrice(state.items)
     },
        clearCart(state){
         state.totalCount = 0
@@ -57,8 +60,8 @@ const cartSlice = createSlice({
     },
       removeCartItem(state,action:PayloadAction<{id:number}>) {
         state.items = state.items.filter(item => item.id !== action.payload.id)
-        state.totalCount = state.items.reduce((acc,obj) => acc + (obj.count || 0), 0)
-        state.totalPrice = state.items.reduce((acc,obj) => acc + (obj.count || 0) * obj.price, 0)
+        state.totalCount = calcTotalCount(state.items)
+        state.totalPrice = calcTotalPrice(state.items)
       }
     
     }
@@ -69,3 +72,4 @@ export const {onAddToCart ,increment,decrement, clearCart, removeCartItem} = car
 export const selectCarttSlice = (state:RootState) => state.cart;
 
 export default cartSlice.reducer
+
