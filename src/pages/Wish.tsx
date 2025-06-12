@@ -8,10 +8,6 @@ import emptyWish from '../assets/img/empty-wish.png';
 
 const Wish = () => {
   const wishItems = useSelector((state: RootState) => state.books.wishItems);
-  React.useEffect(() => {
-    const json = JSON.stringify(wishItems);
-    localStorage.setItem('wish', json);
-  }, [wishItems]);
 
   return (
     <div>

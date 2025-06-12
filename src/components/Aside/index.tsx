@@ -16,6 +16,7 @@ const Aside = () => {
 
   const { books, status } = useSelector((state: RootState) => state.books);
   const activeCategory = useSelector((state: RootState) => state.category.curentCategory);
+  const { itSubCategory } = useSelector((state: RootState) => state.category);
 
   const [open, setOpen] = React.useState(true);
   const toggleOpenCategories = () => {
@@ -23,6 +24,12 @@ const Aside = () => {
   };
 
   const { setCategoryActive, setIsItSubCategory } = useCategoryActions();
+  React.useEffect(() => {
+    // const category = JSON.stringify(activeCategory);
+    localStorage.setItem('category', activeCategory);
+
+    localStorage.setItem('subCategory', JSON.stringify(itSubCategory));
+  }, [activeCategory]);
 
   const handleCategoryClick = React.useCallback(
     (value: string, isSubCategory: boolean) => {

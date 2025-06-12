@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { ItemBook } from "./itemSlice"
 import axios from "axios"
+import { getActiveCategoryFromLocalStorage } from "../../utils/getActiveCategoryFromLocalStorage"
 
 type CategoryArgs = {
     activeCategory: string
@@ -11,10 +12,10 @@ type CategorySliceState = {
     curentCategory: string
     itSubCategory: boolean
 }
-
+const {curentCategory, itSubCategory} = getActiveCategoryFromLocalStorage()
 const initialState:CategorySliceState = {
-    curentCategory: '',
-    itSubCategory: false,
+    curentCategory,
+    itSubCategory,
     products: []
 }
 
