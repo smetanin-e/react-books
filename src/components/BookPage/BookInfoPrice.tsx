@@ -1,10 +1,10 @@
 import React from 'react';
-import { ItemBook } from '../redux/slices/itemSlice';
+import { ItemBook } from '../../redux/slices/itemSlice';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../redux/store';
-import { onAddToCart } from '../redux/slices/cartSlice';
+import { RootState, useAppDispatch } from '../../redux/store';
+import { onAddToCart } from '../../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
-import Button from './Button';
+import Button from '../Button';
 type BookInfoPriceProps = {
   book: ItemBook;
 };

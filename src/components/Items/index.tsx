@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { ItemBook } from '../../redux/slices/itemSlice';
 
-import ItemsSceleton from './ItemsSceleton';
+import ItemsSceleton from './ItemsSkeleton';
 
 type ItepsProps = {
   items: ItemBook[];

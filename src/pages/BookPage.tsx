@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import IconWish from '../components/IconWish';
 import { ItemBook } from '../redux/slices/itemSlice';
 import Breadcrumds from '../components/Breadcrumds';
-import BookInfoPrice from '../components/BookInfoPrice';
+import BookInfoPrice from '../components/BookPage/BookInfoPrice';
+import BookPageSkeleton from '../components/BookPage/BookPageSkeleton';
 
 function BookPage() {
   const [book, setBook] = React.useState<ItemBook>();
@@ -23,7 +24,7 @@ function BookPage() {
   }, [id]);
 
   if (!book) {
-    return <>Загрузка...</>;
+    return <BookPageSkeleton />;
   }
 
   return (

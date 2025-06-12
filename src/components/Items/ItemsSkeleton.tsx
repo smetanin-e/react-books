@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-const ItemsSceleton: React.FC = () => {
+const ItemsSkeleton: React.FC = () => {
   return (
     <ContentLoader
       speed={2}
@@ -17,4 +17,4 @@ const ItemsSceleton: React.FC = () => {
   );
 };
 
-export default ItemsSceleton;
+export default ItemsSkeleton;
