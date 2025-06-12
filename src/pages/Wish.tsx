@@ -7,9 +7,12 @@ import Empty from '../components/Empty';
 import emptyWish from '../assets/img/empty-wish.png';
 
 const Wish = () => {
-  console.log('render Wish');
-
   const wishItems = useSelector((state: RootState) => state.books.wishItems);
+  React.useEffect(() => {
+    const json = JSON.stringify(wishItems);
+    localStorage.setItem('wish', json);
+  }, [wishItems]);
+
   return (
     <div>
       {wishItems.length > 0 ? (

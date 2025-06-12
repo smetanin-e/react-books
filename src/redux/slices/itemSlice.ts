@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getWishItemsFromLocalStorage } from "../../utils/getWishItemsFromLocalStorage";
 
 
 
@@ -30,7 +31,7 @@ const initialState:ItemSliceState = {
     books: [],
     menu: [],
     banner: null,
-    wishItems: [],
+    wishItems: getWishItemsFromLocalStorage(),
     searchValue: ''
 }
 export const fetchBooks = createAsyncThunk<ItemBook[],void>('book/fetchBooksStatus', async () => {

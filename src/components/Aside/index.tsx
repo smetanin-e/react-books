@@ -5,27 +5,17 @@ import { useSelector } from 'react-redux';
 
 import AsidePreLoading from './AsidePreLoading';
 import { Link } from 'react-router-dom';
-import { fetchBooks } from '../../redux/slices/itemSlice';
-import { RootState, useAppDispatch } from '../../redux/store';
+import { RootState } from '../../redux/store';
 
 import useCategoryActions from '../../utils/useCategoryActions';
 import { categoriesFromDataBase } from '../../utils/categoriesFromDataBase';
 import { useMediaQuery } from 'react-responsive';
 
 const Aside = () => {
-  const dispatch = useAppDispatch();
-
   const isMobile = useMediaQuery({ query: '(max-width: 860px)' });
 
   const { books, status } = useSelector((state: RootState) => state.books);
   const activeCategory = useSelector((state: RootState) => state.category.curentCategory);
-  const getBooks = async () => {
-    dispatch(fetchBooks());
-  };
-
-  React.useEffect(() => {
-    getBooks();
-  }, []);
 
   const [open, setOpen] = React.useState(true);
   const toggleOpenCategories = () => {

@@ -6,11 +6,6 @@ import { RootState } from '../../redux/store';
 const CartHeader = () => {
   const { items, totalCount } = useSelector((state: RootState) => state.cart);
 
-  //   React.useEffect(() => {
-  //     const json = JSON.stringify(items);
-  //     localStorage.setItem('cart', json);
-  //   }, []);
-
   React.useEffect(() => {
     const json = JSON.stringify(items);
     localStorage.setItem('cart', json);

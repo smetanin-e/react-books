@@ -32,6 +32,9 @@ const Cart = () => {
     totalCount % 10 >= 2 &&
     totalCount % 10 <= 4 &&
     (totalCount % 100 < 12 || totalCount % 100 > 14);
+
+  console.log(cartItems);
+
   return (
     <>
       {cartItems.length === 0 ? (

@@ -8,8 +8,19 @@ import Search from './Search';
 import Wish from './Wish';
 import Cart from './CartHeader';
 import MenuHeader from './MenuHeader';
+import { useAppDispatch } from '../../redux/store';
+import { fetchBooks } from '../../redux/slices/itemSlice';
 
-function Header() {
+const Header = () => {
+  const dispatch = useAppDispatch();
+  const getBooks = async () => {
+    dispatch(fetchBooks());
+  };
+
+  React.useEffect(() => {
+    getBooks();
+  }, []);
+
   const isMobile = useMediaQuery({ query: '(max-width: 860px)' });
   return (
     <header className='header'>
@@ -52,6 +63,6 @@ function Header() {
       <MenuHeader />
     </header>
   );
-}
+};
 
 export default Header;
