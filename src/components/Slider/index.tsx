@@ -1,23 +1,28 @@
 import arrow from '../../assets/img/slider/arrow.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useNavigate } from 'react-router-dom';
 import SliderSkeleton from './SliderSkeleton';
+import { useMediaQuery } from 'react-responsive';
 
 const Slider = () => {
   const navigate = useNavigate();
   const { books } = useSelector((state: RootState) => state.books);
   const slides = books.filter((item) => item.slider === true);
+
+  const isMobile = useMediaQuery({ query: '(max-width: 860px)' });
+
   return (
     <>
       {books.length > 0 ? (
         <div className='baner-page__slider slider-page'>
           <Swiper
-            modules={[Autoplay, Navigation]}
+            modules={[Autoplay, Navigation, Pagination]}
+            pagination={isMobile}
             navigation={{
               nextEl: '.arrows-slider__arrow.-next',
               prevEl: '.arrows-slider__arrow.-prev',

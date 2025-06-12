@@ -167,6 +167,7 @@
     &__author {
         font-size: 22px;
         line-height: 1.33;
+        padding-block-end: 15px;
     }
 }
 
@@ -203,6 +204,10 @@
   .-next {
     right: 12px;
     transform: translate(0, -50%) rotate(0);
+  }
+
+  .swiper-pagination-bullet {
+    background: #fff !important;
   }
 
 .banner {
