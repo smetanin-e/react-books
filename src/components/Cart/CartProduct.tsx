@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../redux/store';
@@ -9,7 +10,7 @@ type CartProductProps = {
   item: CartItem;
 };
 
-const CartProduct = ({ item }: CartProductProps) => {
+const CartProduct = React.memo(({ item }: CartProductProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -84,6 +85,6 @@ const CartProduct = ({ item }: CartProductProps) => {
       </div>
     </div>
   );
-};
+});
 
 export default CartProduct;

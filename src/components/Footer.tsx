@@ -51,8 +51,8 @@ const Footer = () => {
               y2='30'
               gradientUnits='userSpaceOnUse'
             >
-              <stop stop-color='#37BBFE' />
-              <stop offset='1' stop-color='#007DBB' />
+              <stop stopColor='#37BBFE' />
+              <stop offset='1' stopColor='#007DBB' />
             </linearGradient>
           </defs>
         </svg>
