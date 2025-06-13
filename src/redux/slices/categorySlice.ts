@@ -22,7 +22,7 @@ const initialState:CategorySliceState = {
 export const fetchCategoryBooks = createAsyncThunk<ItemBook[],CategoryArgs>('book/fetchCategoryBooksStatus', async ({activeCategory, itSubCategory}) => {
     //ссылка на массив объектов, содержащий книги
   const url =
-    activeCategory === 'ВСЕ'
+    activeCategory === 'ВСЕ' || activeCategory === ''
       ? 'https://815c3fb7d56c4537.mokky.dev/books'
       : itSubCategory
       ? `https://815c3fb7d56c4537.mokky.dev/books?subCategory=${activeCategory}`
