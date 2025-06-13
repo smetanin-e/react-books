@@ -4,11 +4,11 @@ import { clearCart } from '../../redux/slices/cartSlice';
 import Button from '../Button';
 import { useAppDispatch } from '../../redux/store';
 
-type AlertPopupProps = {
+type CartPopupProps = {
   setPopup: (value: boolean) => void;
 };
 
-const AlertPopup = ({ setPopup }: AlertPopupProps) => {
+const CartPopup = ({ setPopup }: CartPopupProps) => {
   const dispatch = useAppDispatch();
   const onClearCart = () => {
     dispatch(clearCart());
@@ -41,4 +41,4 @@ const AlertPopup = ({ setPopup }: AlertPopupProps) => {
   );
 };
 
-export default AlertPopup;
+export default CartPopup;

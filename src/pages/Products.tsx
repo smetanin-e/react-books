@@ -6,11 +6,9 @@ import { useSelector } from 'react-redux';
 import Pagination from '../components/Pagination';
 import { RootState, useAppDispatch } from '../redux/store';
 import { fetchCategoryBooks } from '../redux/slices/categorySlice';
-import Search from '../components/Header/Search';
 
 function Products() {
   const dispatch = useAppDispatch();
-  //создаем состояние для хранения загруженных книг из сервера
   const { products } = useSelector((state: RootState) => state.category);
 
   const activeCategory = useSelector((state: RootState) => state.category.curentCategory);
