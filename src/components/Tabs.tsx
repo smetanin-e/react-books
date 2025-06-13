@@ -5,6 +5,7 @@ import Pagination from './Pagination';
 //import TabsPreLoading from './TabsPreLoading';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import { pagination } from '../utils/pagination';
 const Tabs = () => {
   //Список табов
   const tabLinks = ['Бестселлеры', 'Новинки', 'Подержанные ', 'Спец. предложение'];
@@ -24,15 +25,24 @@ const Tabs = () => {
 
   //pagination
   const [currentPage, setCurrentPage] = React.useState<number>(1);
-  const [postsPerPage] = React.useState<number>(15);
+  const [postsPerPage] = React.useState(15);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentItems = tabItems.slice(indexOfFirstPost, indexOfLastPost);
+  const currentItems = pagination(tabItems, currentPage, postsPerPage);
   const paginate = (PageNumber: number) => setCurrentPage(PageNumber);
-
+  const tabsPage = React.useRef<HTMLDivElement>(null);
+  const scrollToRef = () => {
+    if (tabsPage.current) {
+      tabsPage.current.scrollIntoView({ block: 'start' });
+      setTimeout(() => {
+        window.scrollBy({
+          top: -130, // откатываем вверх на 105 пикселей
+          behavior: 'smooth', // плавная прокрутка
+        });
+      }, 0);
+    }
+  };
   return (
-    <div className='products-page__books tabs-page'>
+    <div ref={tabsPage} className='products-page__books tabs-page'>
       <ul className='tabs-page__list'>
         {tabLinks.map((tab, i) => (
           <li
@@ -49,6 +59,7 @@ const Tabs = () => {
         <Items items={currentItems} />
 
         <Pagination
+          scrollToRef={scrollToRef}
           postsPerPage={postsPerPage}
           totalPosts={tabItems.length}
           paginate={paginate}

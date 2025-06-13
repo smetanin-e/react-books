@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import Pagination from '../components/Pagination';
 import { RootState, useAppDispatch } from '../redux/store';
 import { fetchCategoryBooks } from '../redux/slices/categorySlice';
+import { pagination } from '../utils/pagination';
 
 function Products() {
   const dispatch = useAppDispatch();
@@ -27,16 +28,25 @@ function Products() {
   //pagination
   const [currentPage, setCurrentPage] = React.useState(1);
   const [postsPerPage] = React.useState(15);
-
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentItems = products.slice(indexOfFirstPost, indexOfLastPost);
-
+  const currentItems = pagination(products, currentPage, postsPerPage);
   const paginate = (PageNumber: number) => setCurrentPage(PageNumber);
+
+  const productsPage = React.useRef<HTMLDivElement>(null);
+  const scrollToRef = () => {
+    if (productsPage.current) {
+      productsPage.current.scrollIntoView({ block: 'start' });
+      setTimeout(() => {
+        window.scrollBy({
+          top: -130, // откатываем вверх на 105 пикселей
+          behavior: 'smooth', // плавная прокрутка
+        });
+      }, 0);
+    }
+  };
 
   return (
     <>
-      <div className='page__products products-page'>
+      <div ref={productsPage} className='page__products products-page'>
         <Aside />
 
         <div className='products-page__books '>
@@ -44,6 +54,7 @@ function Products() {
             <h1 className='products-page__title'>{activeCategory}</h1>
             <Items items={currentItems} />
             <Pagination
+              scrollToRef={scrollToRef}
               postsPerPage={postsPerPage}
               totalPosts={products.length}
               paginate={paginate}

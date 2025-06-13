@@ -5,6 +5,7 @@ type PaginationProps = {
   totalPosts: number;
   paginate: (page: number) => void;
   currentPage: number;
+  scrollToRef?: () => void;
 };
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -12,14 +13,23 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPosts,
   paginate,
   currentPage,
+  scrollToRef,
 }) => {
+  const changePaginatePage = (num: number) => {
+    paginate(num);
+    if (scrollToRef) {
+      scrollToRef();
+    }
+  };
+
   const pageNumbers = [];
   for (let index = 1; index <= Math.ceil(totalPosts / postsPerPage); index++) {
     pageNumbers.push(index);
   }
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [currentPage]);
+
+  //   React.useEffect(() => {
+  //     window.scrollTo(0, 0);
+  //   }, [currentPage]);
 
   return (
     <>
@@ -29,7 +39,7 @@ const Pagination: React.FC<PaginationProps> = ({
             {pageNumbers.map((num) => (
               <li
                 key={num}
-                onClick={() => paginate(num)}
+                onClick={() => changePaginatePage(num)}
                 className={currentPage === num ? 'current-page' : ''}
               >
                 {num}
