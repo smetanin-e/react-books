@@ -46,12 +46,9 @@ const categorySlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchCategoryBooks.pending, (state) => {
                     state.products = [];
-                    console.log('pending');
                 })
                 builder.addCase(fetchCategoryBooks.fulfilled, (state,action:PayloadAction<ItemBook[]>) => {
                     state.products = action.payload;
-                
-                    console.log('success');
                     
                 })
                 builder.addCase(fetchCategoryBooks.rejected, (state) => {
