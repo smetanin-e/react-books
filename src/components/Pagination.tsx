@@ -27,10 +27,6 @@ const Pagination: React.FC<PaginationProps> = ({
     pageNumbers.push(index);
   }
 
-  //   React.useEffect(() => {
-  //     window.scrollTo(0, 0);
-  //   }, [currentPage]);
-
   return (
     <>
       {pageNumbers.length > 1 && (

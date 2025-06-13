@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import IconWish from './IconWish';
 
 import { ItemBook } from '../redux/slices/itemSlice';
+
+import IconWish from './IconWish';
+
 const Book = (obj: ItemBook) => {
   return (
     <>

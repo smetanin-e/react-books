@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import errorImg from '../../assets/img/404.jpg';
 
 import Button from './Button';
 

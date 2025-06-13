@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import IconWish from '../components/IconWish';
+
 import { ItemBook } from '../redux/slices/itemSlice';
+
 import Breadcrumds from '../components/Breadcrumds';
 import BookInfoPrice from '../components/BookPage/BookInfoPrice';
 import BookPageSkeleton from '../components/BookPage/BookPageSkeleton';
+import IconWish from '../components/IconWish';
 
 function BookPage() {
   const [book, setBook] = React.useState<ItemBook>();

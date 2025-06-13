@@ -1,10 +1,13 @@
-import React from 'react';
-import useCategoryActions from '../utils/useCategoryActions';
 import { Link } from 'react-router-dom';
+
+import useCategoryActions from '../utils/useCategoryActions';
+
 import { ItemBook } from '../redux/slices/itemSlice';
+
 type BreadcrumdsProps = {
   book: ItemBook;
 };
+
 const Breadcrumds = ({ book }: BreadcrumdsProps) => {
   const { setCategoryActive, setIsItSubCategory } = useCategoryActions();
   return (

@@ -1,8 +1,9 @@
-import React from 'react';
-import Button from '../Button';
+import { useNavigate } from 'react-router-dom';
+
 import { useAppDispatch } from '../../redux/store';
 import { CartItem, decrement, increment, removeCartItem } from '../../redux/slices/cartSlice';
-import { useNavigate } from 'react-router-dom';
+
+import Button from '../Button';
 
 type CartProductProps = {
   item: CartItem;

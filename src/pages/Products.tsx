@@ -1,17 +1,18 @@
 import React from 'react';
-import Aside from '../components/Aside';
-import Items from '../components/Items/';
-
 import { useSelector } from 'react-redux';
-import Pagination from '../components/Pagination';
+
 import { RootState, useAppDispatch } from '../redux/store';
 import { fetchCategoryBooks } from '../redux/slices/categorySlice';
+
 import { pagination } from '../utils/pagination';
+
+import Aside from '../components/Aside';
+import Items from '../components/Items/';
+import Pagination from '../components/Pagination';
 
 function Products() {
   const dispatch = useAppDispatch();
   const { products } = useSelector((state: RootState) => state.category);
-
   const activeCategory = useSelector((state: RootState) => state.category.curentCategory);
   const itSubCategory = useSelector((state: RootState) => state.category.itSubCategory);
 
@@ -30,15 +31,14 @@ function Products() {
   const [postsPerPage] = React.useState(15);
   const currentItems = pagination(products, currentPage, postsPerPage);
   const paginate = (PageNumber: number) => setCurrentPage(PageNumber);
-
   const productsPage = React.useRef<HTMLDivElement>(null);
   const scrollToRef = () => {
     if (productsPage.current) {
       productsPage.current.scrollIntoView({ block: 'start' });
       setTimeout(() => {
         window.scrollBy({
-          top: -130, // откатываем вверх на 105 пикселей
-          behavior: 'smooth', // плавная прокрутка
+          top: -130,
+          behavior: 'smooth',
         });
       }, 0);
     }

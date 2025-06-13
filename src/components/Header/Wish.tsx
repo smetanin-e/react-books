@@ -1,15 +1,19 @@
+import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 import { RootState } from '../../redux/store';
-import React from 'react';
 
 function Wish() {
   const countWish = useSelector((state: RootState) => state.books.wishItems.length);
   const wishItems = useSelector((state: RootState) => state.books.wishItems);
+
   React.useEffect(() => {
     const json = JSON.stringify(wishItems);
     localStorage.setItem('wish', json);
   }, [wishItems]);
+
   return (
     <Link to={'/wish'}>
       <div className='items-header__item wish'>

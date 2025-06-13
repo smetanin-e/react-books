@@ -59,11 +59,11 @@ const itemSlice = createSlice({
         builder.addCase(fetchBooks.pending, (state) => {
             state.books = [];
             state.status = 'loading';
-            console.log('pending');
         })
         builder.addCase(fetchBooks.fulfilled, (state,action:PayloadAction<ItemBook[]>) => {
             state.books = action.payload;
             state.status = 'success';
+
             //получаем 7 категорий для меню в header
             state.menu = [...new Set(action.payload.map((obj) => obj.subCategory))]
               .filter((item) => !item.includes(' '))
@@ -73,12 +73,6 @@ const itemSlice = createSlice({
             state.banner = action.payload
             .filter((obj) => obj.sale)
             .reduce((prev, cur) => (cur.sale && (!prev.sale || +cur.sale > +prev.sale) ? cur : prev))
-
-            console.log('success');
-            // (
-            //         (prev, cur) => (cur.sale && (!prev.sale || +cur.sale > +prev.sale) ? cur : prev), 
-            //         null
-            //     )
         })
         builder.addCase(fetchBooks.rejected, (state) => {
             state.books = [];

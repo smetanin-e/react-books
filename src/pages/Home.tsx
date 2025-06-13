@@ -1,18 +1,19 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+import React from 'react';
+import { useMediaQuery } from 'react-responsive';
+
 import { changeCategory } from '../redux/slices/categorySlice';
+import { useAppDispatch } from '../redux/store';
+
 import Banner from '../components/Banner';
 import Slider from '../components/Slider';
 import Tabs from '../components/Tabs';
 import Aside from '../components/Aside';
-import { useAppDispatch } from '../redux/store';
-import React from 'react';
 import Search from '../components/Header/Search';
-
-import { useMediaQuery } from 'react-responsive';
 
 const Home = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 860px)' });
   const dispatch = useAppDispatch();
+
   //При переходе на главную страницу очищаем активную категорию
   React.useEffect(() => {
     dispatch(changeCategory(''));

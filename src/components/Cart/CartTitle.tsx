@@ -8,6 +8,7 @@ const CartHeader = ({ totalCount, setPopup }: CartHeaderProps) => {
     totalCount % 10 >= 2 &&
     totalCount % 10 <= 4 &&
     (totalCount % 100 < 12 || totalCount % 100 > 14);
+
   return (
     <div className='cart__header'>
       <h1 className='cart__title'>

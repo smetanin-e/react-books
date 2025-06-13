@@ -1,10 +1,11 @@
-import React from 'react';
+import emptyWish from '../assets/img/empty-wish.png';
+
 import { useSelector } from 'react-redux';
 
 import { RootState } from '../redux/store';
+
 import Items from '../components/Items/';
 import Empty from '../components/Empty';
-import emptyWish from '../assets/img/empty-wish.png';
 
 const Wish = () => {
   const wishItems = useSelector((state: RootState) => state.books.wishItems);

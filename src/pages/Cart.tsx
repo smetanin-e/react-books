@@ -21,8 +21,12 @@ const Cart = () => {
         <Empty title={'В вашей корзине нет товаров'} image={emptyCartImage} />
       ) : (
         <>
+          {/* Попап очистки корзины */}
           {popupClearCart && <CartPopup setPopup={setPopupClearCart} />}
+
+          {/* информационный попап */}
           {popupOrder && <Popup setPopup={setPopupOrder} />}
+
           <div className='cart'>
             <CartTitle totalCount={totalCount} setPopup={setPopupClearCart} />
 

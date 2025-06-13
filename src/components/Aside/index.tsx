@@ -1,35 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
+
+import { RootState } from '../../redux/store';
 
 import AsidePreLoading from './AsidePreLoading';
-import { Link } from 'react-router-dom';
-import { RootState } from '../../redux/store';
+import AsideHeader from './AsideHeader';
 
 import useCategoryActions from '../../utils/useCategoryActions';
 import { categoriesFromDataBase } from '../../utils/categoriesFromDataBase';
-import { useMediaQuery } from 'react-responsive';
 
 const Aside = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 860px)' });
 
   const { books, status } = useSelector((state: RootState) => state.books);
-  const activeCategory = useSelector((state: RootState) => state.category.curentCategory);
-  const { itSubCategory } = useSelector((state: RootState) => state.category);
-
-  const [open, setOpen] = React.useState(true);
-  const toggleOpenCategories = () => {
-    setOpen(!open);
-  };
+  const { curentCategory, itSubCategory } = useSelector((state: RootState) => state.category);
 
   const { setCategoryActive, setIsItSubCategory } = useCategoryActions();
-  React.useEffect(() => {
-    // const category = JSON.stringify(activeCategory);
-    localStorage.setItem('category', activeCategory);
 
-    localStorage.setItem('subCategory', JSON.stringify(itSubCategory));
-  }, [activeCategory]);
+  const [open, setOpen] = React.useState(true);
+
+  const categories = categoriesFromDataBase(books, 'category', 'subCategory');
+  const categoryTitles = Object.keys(categories);
 
   const handleCategoryClick = React.useCallback(
     (value: string, isSubCategory: boolean) => {
@@ -43,6 +37,12 @@ const Aside = () => {
     },
     [isMobile],
   );
+
+  React.useEffect(() => {
+    localStorage.setItem('category', curentCategory);
+    localStorage.setItem('subCategory', JSON.stringify(itSubCategory));
+  }, [curentCategory]);
+
   React.useEffect(() => {
     if (isMobile) {
       setOpen(false);
@@ -51,21 +51,13 @@ const Aside = () => {
     }
   }, [isMobile]);
 
-  const categories = categoriesFromDataBase(books, 'category', 'subCategory');
-  const categoryTitles = Object.keys(categories);
-
   return (
     <aside className='products-page__categories categories'>
       {status === 'loading' ? (
         <AsidePreLoading />
       ) : (
         <>
-          <div className='categories__header'>
-            <h2 className='categories__title'>Категории</h2>
-            <button onClick={toggleOpenCategories} className='categories__button'>
-              =
-            </button>
-          </div>
+          <AsideHeader open={open} setOpen={setOpen} />
 
           {open &&
             categoryTitles.map((value, index) => (
@@ -74,7 +66,7 @@ const Aside = () => {
                   to={'/products'}
                   onClick={() => handleCategoryClick(value, false)}
                   className={
-                    activeCategory === value
+                    curentCategory === value
                       ? 'item-category__title nav-link nav-link-active'
                       : 'item-category__title nav-link'
                   }
@@ -88,7 +80,7 @@ const Aside = () => {
                       <li
                         key={subCategory + index}
                         className={
-                          activeCategory === subCategory
+                          curentCategory === subCategory
                             ? 'item-category__subcategory nav-link nav-link-active'
                             : 'item-category__subcategory nav-link'
                         }

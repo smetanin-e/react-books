@@ -1,6 +1,8 @@
 import React from 'react';
-import { addWish, ItemBook, onRemoveWish } from '../redux/slices/itemSlice';
 import { useSelector } from 'react-redux';
+
+import { addWish, ItemBook, onRemoveWish } from '../redux/slices/itemSlice';
+
 import { RootState, useAppDispatch } from '../redux/store';
 
 type IconWishProps = {
@@ -11,9 +13,8 @@ type IconWishProps = {
 const IconWish: React.FC<IconWishProps> = ({ item, outBookPage }) => {
   const dispatch = useAppDispatch();
   const wishItems = useSelector((state: RootState) => state.books.wishItems);
-
-  //const currentBook = useSelector((state) => state.books.item);
   const checkInWish = wishItems.some((elem) => elem.id === item.id);
+
   const addToWish = (obj: ItemBook) => {
     dispatch(addWish(obj));
   };

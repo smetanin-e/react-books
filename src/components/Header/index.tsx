@@ -1,19 +1,21 @@
 import logo from '../../assets/img/logo.png';
 
 import React from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+import { fetchBooks } from '../../redux/slices/itemSlice';
+import { useAppDispatch } from '../../redux/store';
 
 import Search from './Search';
 import Wish from './Wish';
 import Cart from './CartHeader';
 import MenuHeader from './MenuHeader';
-import { useAppDispatch } from '../../redux/store';
-import { fetchBooks } from '../../redux/slices/itemSlice';
+
 import Popup from '../popups/Popup';
 
 const Header = () => {
   const dispatch = useAppDispatch();
+
   const getBooks = async () => {
     dispatch(fetchBooks());
   };

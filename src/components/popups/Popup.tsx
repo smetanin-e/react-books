@@ -1,5 +1,7 @@
-import React from 'react';
 import styles from './alertPopup.module.scss';
+
+import React from 'react';
+
 import Button from '../Button';
 
 type PopupProps = {
@@ -16,6 +18,7 @@ const Popup = ({ setPopup }: PopupProps) => {
       document.body.style.overflow = 'auto';
     };
   }, []);
+
   return (
     <div className={styles.popup}>
       <div className={styles.wrapper}>

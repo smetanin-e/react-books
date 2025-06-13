@@ -1,8 +1,11 @@
-import React from 'react';
 import styles from './alertPopup.module.scss';
+
+import React from 'react';
+
 import { clearCart } from '../../redux/slices/cartSlice';
-import Button from '../Button';
 import { useAppDispatch } from '../../redux/store';
+
+import Button from '../Button';
 
 type CartPopupProps = {
   setPopup: (value: boolean) => void;
@@ -24,6 +27,7 @@ const CartPopup = ({ setPopup }: CartPopupProps) => {
       document.body.style.overflow = 'auto';
     };
   }, []);
+
   return (
     <div className={styles.popup}>
       <div className={styles.wrapper}>

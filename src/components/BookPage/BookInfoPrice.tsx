@@ -1,10 +1,14 @@
-import React from 'react';
-import { ItemBook } from '../../redux/slices/itemSlice';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../redux/store';
-import { onAddToCart } from '../../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
+
+import { ItemBook } from '../../redux/slices/itemSlice';
+import { onAddToCart } from '../../redux/slices/cartSlice';
+
+import { RootState, useAppDispatch } from '../../redux/store';
+
 import Button from '../Button';
+import Pays from './Pays';
+
 type BookInfoPriceProps = {
   book: ItemBook;
 };
@@ -23,6 +27,7 @@ const BookInfoPrice = ({ book }: BookInfoPriceProps) => {
     };
     dispatch(onAddToCart(item));
   };
+
   return (
     <div className='body-book-info__price price-book-info'>
       <div className='price-book-info__price'>
@@ -54,22 +59,7 @@ const BookInfoPrice = ({ book }: BookInfoPriceProps) => {
           )}
         </div>
       </div>
-      <div className='price-book-info__pay'>
-        <p className='price-book-info__pay-scure'>Безопасные платежи</p>
-
-        <ul className='price-book-info__pay-list'>
-          <li>
-            <img
-              src='https://kanistra-shop.ru/local/templates/kanistra/img/design/sbp-logo.png'
-              alt='image111'
-            />
-          </li>
-
-          <li>
-            <img src='https://stropy-yuga.ru/image/catalog/stropy/Karta%20Mir.png' alt='image111' />
-          </li>
-        </ul>
-      </div>
+      <Pays />
     </div>
   );
 };
