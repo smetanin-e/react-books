@@ -1,10 +1,43 @@
+
 .footer {
+    color: #9b9999;
+    font-size: 18px;
     background: #43443F;
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     p {
-        color: #9b9999;
-        font-size: 16px;
         text-align: center;
-        padding: 0 15px;
+        font-size: 12px;
+          
     }
+    &__container {
+        
+    }
+    &__title {
+      padding-block-end: 10px;
+      text-align: center;
+      
+    }
+   
+}
+.technology-footer {
+    &__title {
+        text-align: center;
+        padding-block-end: 10px;
+        
+    }
+    &__body {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        font-size: 14px;
+        padding-block-end: 20px;
+        @media(max-width: 500px) {
+            display: block;
+            text-align: center;
+        }
+    }
+    
 }
